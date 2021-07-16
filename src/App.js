@@ -9,6 +9,9 @@ function App() {
         <p>
           Deployment is running...
         </p>
+        <p>
+          Seond commit from git
+        </p>
       </header>
     </div>
   );
