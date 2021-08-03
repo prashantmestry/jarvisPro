@@ -10,7 +10,7 @@ function App() {
           Deployment is running...
         </p>
         <p>
-          Seond commit from git
+          Seond commit from git two
         </p>
       </header>
     </div>
