@@ -7,7 +7,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Deployment is running...
+          Deployment is running with redux...
         </p>
         <p>
           Seond commit from git two
