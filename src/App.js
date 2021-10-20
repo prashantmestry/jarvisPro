@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import CreateBlog from './Component/Blog/CreateBlog';
+import CreateWidget from './Component/Blog/CreateWidget';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
           Deployment is running with redux1...
         </p>
         <CreateBlog />
+        <CreateWidget />
       </header>
     </div>
   );

@@ -11,3 +11,35 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+.grid-item-echart {  
+  border: 1px solid #141414;
+  display: flex;
+  flex-direction: column;
+}
+
+.grid-item-echart__title {
+  font-size: 14px;  
+  padding: 4px 0;
+  text-align: center;  
+}
+.grid-item-echart__title:hover {
+  cursor: move;
+}
+
+.grid-item-echart__graph {
+  flex: 1;
+}
+
+.react-grid-item > .react-resizable-handle::after
+{
+  border-right: 3px solid rgb(30 113 187) !important;
+  border-bottom: 3px solid rgb(30 113 187) !important;
+  width:10px !important;
+  height : 10px !important;
+}
+
+
+
+
