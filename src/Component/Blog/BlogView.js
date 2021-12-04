@@ -2,44 +2,39 @@ import React, { useEffect } from 'react';
 import * as actions from '../../redux/actions/index';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import ChartList from './ChartList';
+import SummaryWidget from './SummaryWidget';
 
-const CreateBlog = (props) => {
-
-    // useEffect(() => {
-    //     props.createBlog(props.blogList.length);
-    // }, []);
-
+const BlogView = (props) => {
 
     let addNewBlog = () => {
-        // console.log('blog list is ', props.blogList);
-        // console.log('total is ', props.blogList.length + 1);
         props.createBlog(props.blogList.length + 1);
     }
 
     return (
         <BlogListDiv>
-            <h2>Create new Blog</h2>
+            <SummaryWidget />
+            {/* <h2>Create new Blog</h2>
             <AddBlogButton onClick={() => addNewBlog()}>Add Blog</AddBlogButton>
+            <Button variant="success" size="xxl">
+                flat button
+            </Button>
             {
                 (props.blogList && props.blogList.length > 0) && props.blogList.map((blog, index) => {
                     return (
                         <div key={index}> {blog.counter}  {blog.title} - {blog.description}</div>
                     )
                 })
-            }
+            } */}
+            <ChartList />
         </BlogListDiv>
     )
 }
 
-const AddBlogButton = styled.button`
-
-`;
-
 const BlogListDiv = styled.div`
-    border : 1px solid gray;
-    margin:10px;
-    padding:10px;
+    border : 1px solid gray;        
     text-align:left;
+    Xwidth:100%;
 `;
 
 const mapStateToProps = (state) => {
@@ -54,4 +49,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreateBlog);
+export default connect(mapStateToProps, mapDispatchToProps)(BlogView);
