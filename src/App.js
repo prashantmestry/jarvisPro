@@ -22,6 +22,11 @@ const { Header, Content, Footer } = Layout;
 
 function App() {
 
+  useEffect(() => {
+
+
+  }, []);
+
   return (
     <Layout style={{ minHeight: '100vh' }}>
       <Router>

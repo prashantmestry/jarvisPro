@@ -8,7 +8,6 @@ import Loading from '../Common/Loading';
 import AssetInfo from './AssetInfo';
 import EquityDetail from './EquityDetail';
 import LineGraphBox from './Graph/LineGraphBox';
-
 import ErrorBox from '../Common/ErrorBox';
 
 class ViewDaafChart extends React.Component {
@@ -18,7 +17,7 @@ class ViewDaafChart extends React.Component {
         assetFrequency: 'weekly'
     }
 
-    componentDidMount() {        
+    componentDidMount() {
         this.props.fetchDaafData();
         this.props.fetchAssetGraphData();
     }
@@ -100,30 +99,32 @@ class ViewDaafChart extends React.Component {
                                     display_format={this.props.allocation_data.fmt}
                                     equity_average={this.props.allocation_data && this.props.allocation_data.eqtyavg || null} />
                             }
+
+                            <div style={{ position: 'relative', minHeight: '100px', width: '100%', marginLeft: '10px' }}>
+                                {
+                                    this.props.asset_data_loading ? <Loading />
+                                        :
+                                        <>
+                                            {
+                                                this.props.asset_data?.data &&
+                                                <LineGraphBox
+                                                    title='Asset allocation'
+                                                    display_format={this.props.asset_data.fmt}
+                                                    data={this.props.asset_data}
+                                                    frequency={this.state.assetFrequency}
+                                                    changeFrequency={(val) => {
+                                                        this.setState({
+                                                            assetFrequency: val
+                                                        });
+                                                    }}
+                                                />
+                                            }
+                                        </>
+                                }
+                            </div>
                         </MidBox>
 
-                        <div style={{ position: 'relative', minHeight: '100px' }}>
-                            {
-                                this.props.asset_data_loading ? <Loading />
-                                    :
-                                    <>
-                                        {
-                                            this.props.asset_data?.data &&
-                                            <LineGraphBox
-                                                title='Asset allocation'
-                                                display_format={this.props.asset_data.fmt}
-                                                data={this.props.asset_data}
-                                                frequency='weekly'
-                                                changeFrequency={(val) => {
-                                                    this.setState({
-                                                        assetFrequency: val
-                                                    });
-                                                }}
-                                            />
-                                        }
-                                    </>
-                            }
-                        </div>
+
 
                     </>
                 }

@@ -9,7 +9,7 @@ import { Drawer, Tooltip } from 'antd';
 import { TableOutlined, CameraOutlined } from '@ant-design/icons';
 import JustTable from '../JustTable';
 import withLineGraph from '../Hoc/withLineGraph';
-import { Line } from 'react-chartjs-2';
+import { Bar, Line } from 'react-chartjs-2';
 import faker from 'faker';
 
 function getColor(index) {
@@ -69,14 +69,6 @@ const LineGraphBox = (props) => {
         setData(all);
     }
 
-    useEffect(() => {
-        if (props.info && props.info.length > 0) {
-            onYearClick(yearEnd);
-            setStartDate(props.info[0].dt.substr(0, 4));
-            setEndDate(props.info[props.info.length - 1].dt.substr(0, 4));
-        }
-    }, [props]);
-
 
     const onYearClick = (value) => {
         setyearEnd(value);
@@ -117,11 +109,19 @@ const LineGraphBox = (props) => {
         a.href = url_base64jp;
     }
 
+
+    useEffect(() => {
+        if (props.info && props.info.length > 0) {
+            onYearClick(yearEnd);
+            setStartDate(props.info[0].dt.substr(0, 4));
+            setEndDate(props.info[props.info.length - 1].dt.substr(0, 4));
+        }
+    }, [props]);
+
+
     useEffect(() => {
         console.log('data', data);
     }, [data]);
-
-    let labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
 
     return (
         <LineGraphSection style={{ overflow: 'hidden', position: 'relative' }}>
@@ -148,7 +148,6 @@ const LineGraphBox = (props) => {
                 <>
                     <div style={{ display: 'flex', flexDirection: 'column' }}>
                         <div className='controller'>
-
                             <div style={{ textAlign: 'center' }}>
                                 <GraphPeriod
                                     onClick={props.changeFrequency}
@@ -186,58 +185,30 @@ const LineGraphBox = (props) => {
 
                         <GraphTitle>
                             <h3>{props.title}</h3>
+                            <h2>Frequency : {props.frequency}</h2>
                         </GraphTitle>
-
                     </div>
 
-                    <div style={{
-                        margin: '10px 0 20px 0', float: 'left', width: '100%',
-                        position: 'relative',
-                        height: '300px', minHeight: '300px'
-                    }}>
-                        {
-                            <Line data={{
-                                labels,
-                                options: {
-                                    responsive: true,
-                                    plugins: {
-                                        legend: {
-                                            position: 'top',
-                                        },
-                                        title: {
-                                            display: true,
-                                            text: 'Chart.js Line Chart',
-                                        },
-                                    },
+
+                    {/* <Line
+                        datasetIdKey='id'
+                        data={{
+                            labels: ['Jun', 'Jul', 'Aug'],
+                            datasets: [
+                                {
+                                    id: 1,
+                                    label: 'qw',
+                                    data: [5, 6, 7],
                                 },
-                                datasets: [
-                                    {
-                                        label: 'Dataset 1',
-                                        data: labels.map(() => faker.datatype.number({ min: -1000, max: 1000 })),
-                                        borderColor: 'rgb(255, 99, 132)',
-                                        backgroundColor: 'rgba(255, 99, 132, 0.5)',
-                                    },
-                                    {
-                                        label: 'Dataset 2',
-                                        data: labels.map(() => faker.datatype.number({ min: -1000, max: 1000 })),
-                                        borderColor: 'rgb(53, 162, 235)',
-                                        backgroundColor: 'rgba(53, 162, 235, 0.5)',
-                                    }
-                                ]
-                            }} />
-                        }
-                    </div>
+                                {
+                                    id: 2,
+                                    label: 'we',
+                                    data: [3, 2, 1],
+                                },
+                            ],
+                        }}
+                    /> */}
 
-                    {/* <div style={{ opacity: '0', height: '300px', position: 'relative', zIndex: '-1' }}>
-                        {
-                            data &&
-                            <Line
-                                options={dwn_img_option}
-                                data={data}
-                                id={props.title + '_2'}
-                            />
-                        }
-                    </div> */}
 
                     <div style={{ margin: '20px 20px' }}>
                         {
@@ -258,9 +229,9 @@ const LineGraphBox = (props) => {
 }
 
 const LineGraphSection = styled.div`
-    background-color: green;
+    background-color: #fff;
     border-radius: 10px;
-    border: 1px solid red;
+    border: 1px solid #b1b1b1;
 `;
 
 let GraphTitle = styled.div`
@@ -274,7 +245,6 @@ let GraphTitle = styled.div`
 let GraphIcon = styled.span`
     font-size: 13px; 
     margin: 0 5px 0 10px;
-
     .icons{
         cursor: pointer;
         font-size: 15px;
