@@ -6,8 +6,7 @@ const SliderYear = (props) => {
     const [min, setMin] = useState(props.min);
     const [max, setMax] = useState(props.max);
     const [marks, setMarks] = useState();
-    const [defaultSet, setDefaultSet] = useState([props.min, props.max]);
-    const [minDisplay, setMinDisplay] = useState(props.min);
+    const [defaultSet, setDefaultSet] = useState([props.min, props.max]);    
 
     useEffect(() => {
         setMin(props.min);
@@ -75,7 +74,7 @@ const RangeSlider = styled(Slider)`
         height:2px;
     }
     .ant-slider-track {        
-        background-color: red;
+        background-color: gray;
         height:2px;
     }
     & .ant-slider:hover .ant-slider-track {
@@ -86,11 +85,11 @@ const RangeSlider = styled(Slider)`
         width: 15px;
         height: 20px;
         margin-top: -8px;
-        background-color: beige;
+        background-color: #cbcbcb;
         border: 0;
         border-radius: 0;
         border-radius : 2px;        
-        box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+        Xbox-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
         font-size: 10px;
         display: -webkit-box;
         display: -webkit-flex;
@@ -126,7 +125,7 @@ const RangeSlider = styled(Slider)`
         }
     }
     .ant-slider-mark-text-active {
-        color: rgba(0, 0, 0, 0.65);
+        Xcolor: rgba(0, 0, 0, 0.65);
         color: #000;
     }    
 `

@@ -8,18 +8,16 @@ import Loading from '../Common/Loading';
 import AssetInfo from './AssetInfo';
 import EquityDetail from './EquityDetail';
 import LineGraphBox from './Graph/LineGraphBox';
-import ErrorBox from '../Common/ErrorBox';
 
 class ViewDaafChart extends React.Component {
 
     state = {
-        loading: false,
-        assetFrequency: 'weekly'
+        loading: false
     }
 
     componentDidMount() {
         this.props.fetchDaafData();
-        this.props.fetchAssetGraphData();
+        this.props.fetchAllDaafCharts();
     }
 
     componentDidUpdate(preProps) {
@@ -27,36 +25,6 @@ class ViewDaafChart extends React.Component {
 
     getNewDate = (dt) => {
         return moment(dt, 'YYYY-MM-DD').format('Do MMM YYYY');
-    }
-
-    downloadExcel = () => {
-        return;
-        // this.setState({
-        //     loading: true
-        // })
-        // const url = `${API5001}/downloadFile/v2`;
-        // const headers = {
-        //     'Content-Type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-        // };
-        // const body = JSON.stringify({
-        //     "filename": "daaf_allocation.xlsx"
-        // });
-
-        // jarvisBackend.post(url, body, { headers: headers, responseType: 'arraybuffer', })
-        //     .then(response => {
-        //         const url = window.URL.createObjectURL(new Blob([response.data]));
-        //         const link = document.createElement('a');
-        //         link.href = url;
-        //         link.setAttribute('download', 'daaf_template.xlsx');
-        //         document.body.appendChild(link);
-        //         link.click();
-        //         setLoading(false);
-
-        //     })
-        //     .catch(err => {
-        //         notifyUser('error', { message: "Some Internal error occurred while downloading excel" });
-        //         setLoading(false);
-        //     });
     }
 
     render() {
@@ -100,32 +68,27 @@ class ViewDaafChart extends React.Component {
                                     equity_average={this.props.allocation_data && this.props.allocation_data.eqtyavg || null} />
                             }
 
-                            <div style={{ position: 'relative', minHeight: '100px', width: '100%', marginLeft: '10px' }}>
+                            <div style={{ position: 'relative', minHeight: '100px', width: '100%', margin: '0 0px 0px 10px' }}>
                                 {
-                                    this.props.asset_data_loading ? <Loading />
-                                        :
-                                        <>
-                                            {
-                                                this.props.asset_data?.data &&
-                                                <LineGraphBox
-                                                    title='Asset allocation'
-                                                    display_format={this.props.asset_data.fmt}
-                                                    data={this.props.asset_data}
-                                                    frequency={this.state.assetFrequency}
-                                                    changeFrequency={(val) => {
-                                                        this.setState({
-                                                            assetFrequency: val
-                                                        });
-                                                    }}
-                                                />
-                                            }
-                                        </>
+                                    this.props.chartDataLoading &&
+                                    <div style={{ textAlign: 'center', height: '100%', display: 'grid', alignItems: 'center' }}>
+                                        <Loading text='Loading Chart Data...'/>
+                                    </div>
+                                }
+                                {
+                                    (this.props.chartData?.length > 0) &&
+                                    this.props.chartData.map(val => {
+                                        return (
+                                            <LineGraphBox
+                                                title={val.title}
+                                                display_format={val.fmt}
+                                                data={val}
+                                            />
+                                        )
+                                    })
                                 }
                             </div>
                         </MidBox>
-
-
-
                     </>
                 }
             </div>
@@ -188,16 +151,19 @@ const mapStateToProps = state => {
         allocation_data: state.daaf.allocation_data,
         allocation_data_loading: state.daaf.allocation_data_loading,
         allocation_data_error: state.daaf.allocation_data_error,
-        asset_data: state.daaf.asset_data,
-        asset_data_loading: state.daaf.asset_data_loading,
-        asset_data_error: state.daaf.asset_data_error
+        // asset_data: state.daaf.asset_data,
+        // asset_data_loading: state.daaf.asset_data_loading,
+        // asset_data_error: state.daaf.asset_data_error
+        chartData: state.daaf.chartData,
+        chartDataLoading: state.daaf.chartDataLoading,
+        chartDataError: state.daaf.chartDataError,
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchDaafData: () => dispatch(actions.fetchDaafData()),
-        fetchAssetGraphData: () => dispatch(actions.fetchAssetGraphData())
+        fetchDaafData: (data) => dispatch(actions.fetchDaafData(data)),
+        fetchAllDaafCharts: () => dispatch(actions.fetchAllDaafCharts())
     }
 }
 

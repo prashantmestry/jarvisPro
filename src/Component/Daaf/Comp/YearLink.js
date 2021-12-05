@@ -35,23 +35,28 @@ let YearList = styled.div`
     justify-content : center;
     align-items:center;
     text-align:center;
+    font-weight :600;
+    font-size:10px;
     span{        
         margin-right:10px;        
-        padding:5px;
-        background : gray;
-        border : 1px solid #000;
+        padding:5px;        
+        border : 1px solid #b3b3b3;
+        color : #b3b3b3;
         width : 27px;
         height : 27px;
-        border-radius:15px;
-        font-weight :500;
-        font-size:8px;     
+        border-radius:15px;                     
         display : flex;
         justify-content : center;
         align-items:center;
         cursor : pointer;
+        :hover{
+            border : 1px solid #000;
+            color : #000;    
+        }
     }
     span.active{
         border : 1px solid #000;
+        color : #000;
     }
 `;
 

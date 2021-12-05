@@ -9,8 +9,11 @@ import { Drawer, Tooltip } from 'antd';
 import { TableOutlined, CameraOutlined } from '@ant-design/icons';
 import JustTable from '../JustTable';
 import withLineGraph from '../Hoc/withLineGraph';
-import { Bar, Line } from 'react-chartjs-2';
 import faker from 'faker';
+
+import { Bar, Line, Pie, Doughnut } from 'react-chartjs-2';
+import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, BarElement, Title, Legend } from 'chart.js';
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, BarElement, Title, Legend);
 
 function getColor(index) {
     let colors = [
@@ -24,6 +27,7 @@ function getColor(index) {
 const LineGraphBox = (props) => {
 
     const [yearEnd, setyearEnd] = useState(5);
+    const [frequency, setFrequency] = useState('weekly');
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState((new Date()).getFullYear());
     const [minDate, setMinDate] = useState(null);
@@ -31,12 +35,115 @@ const LineGraphBox = (props) => {
     const [filterGraphData, setFilterGraphData] = useState(props.info);
     const [showDrawer, setShowDrawer] = useState(false);
 
-    function makeGraphData(graph_data) {
 
+    const LineOptions = {
+        tooltips: {
+            mode: 'index',
+            position: 'average',
+            intersect: false,
+            callbacks: {
+                title: function (tooltipItem, data) {
+                    return moment(tooltipItem[0].xLabel, 'YYYY-MM-DD').format('DD-MM-YYYY')
+                },
+                label: function (tooltipItem, data) {
+                    return data.datasets[tooltipItem.datasetIndex].label + " : " + tooltipItem.yLabel + props.display_format;
+                }
+            }
+        },
+        elements: {
+            point: {
+                pointStyle: 'circle',
+                backgroundColor: 'rgba(200, 200, 100, 0.1)',
+                borderColor: '#fff'
+            }
+        },
+        animation: {
+            duration: 800,
+            //easing : 'easeInQuint'
+            // onProgress: function (animation) {
+            //     progress.value = animation.animationObject.currentStep / animation.animationObject.numSteps;
+            // }
+        },
+        layout: {
+            Xpadding: { left: 10, right: 15, top: 0, bottom: 10 }
+        },
+        title: {
+            display: false,
+            text: props.title,
+        },
+        legend: { display: true, position: 'top' },
+        maintainAspectRatio: false,
+        responsive: true,
+        hover: { mode: 'index', intersect: false },
+        scales: {
+            xAxes: [
+                {
+                    scaleLabel: {
+                        display: false,
+                        fontSize: 13,
+                        labelString: "Time series data in Year"
+                    },
+                    gridLines: {
+                        display: false,
+                        color: '#041821',
+                        borderDash: [20, 0]
+                    },
+                    type: 'time',
+                    time: { parser: 'YYYY-MM-DD' },
+                }
+            ],
+            yAxes: [
+                {
+                    scaleLabel: {
+                        display: false,
+                        fontSize: 13,
+                        labelString: "Percentage"
+                    },
+                    gridLines: {
+                        display: true,
+                        color: '#f4f4f4'
+                    },
+                    ticks: {
+                        callback: function (value, index, values) {
+                            return value + '%';
+                        }
+                    }
+                }
+            ]
+        },
+        plugins: {
+            datalabels: {
+                listeners: {
+                    click: function (context) {
+                        // console.log('click ', context);
+                    }
+                },
+                display: function (context) {
+                    //return context.dataset.data[context.dataIndex].flag ? true : false;
+                    return true;
+                },
+                clamp: true,
+                anchor: "center",
+                color: "#27fdf5",
+                align: "end",
+                offset: 15,
+                borderRadius: 10,
+                cursor: 'pointer',
+                font: { weight: "bold" },
+                borderWidth: 2,
+                borderColor: '#27fdf5',
+                backgroundColor: 'red',
+                formatter: function (value, context) {
+                    return value && value.flag ? 'R' : null
+                }
+            }
+        }
+    }
+
+    function makeGraphData(graph_data) {
         let attribute = Object.keys(graph_data[0]).filter(v => v != 'dt');
         let data_list = [];
         attribute.forEach((v, index) => {
-
             data_list[v] = {
                 label: props.replaceTitle[v] || v,
                 borderColor: getColor(index).color,
@@ -48,7 +155,6 @@ const LineGraphBox = (props) => {
                 fill: true
             }
         });
-
         graph_data.forEach((v) => {
             let dd = moment(v.dt, "YYYY-MM-DD").format("YYYY-MM-DD");
             attribute.forEach(v1 => {
@@ -59,12 +165,10 @@ const LineGraphBox = (props) => {
                     })
             })
         });
-
         let temp_datasets = [];
         attribute.forEach(v => {
             temp_datasets.push(data_list[v]);
         });
-
         let all = { datasets: temp_datasets };
         setData(all);
     }
@@ -78,8 +182,7 @@ const LineGraphBox = (props) => {
             setMinDate(sDate);
             let temp_data = dateCalculationData(sDate, eDate);
             makeGraphData(temp_data);
-        }
-        else {
+        } else {
             let temp_data = dateCalculationData('', '');
             setMinDate(parseInt(props.info[0].dt.substr(0, 4)));
             makeGraphData(temp_data);
@@ -91,9 +194,7 @@ const LineGraphBox = (props) => {
             let data = props.info.filter(v => v.dt.substr(0, 4) >= sDate && v.dt.substr(0, 4) <= eDate);
             return data;
         }
-        else {
-            return props.info;
-        }
+        return props.info;
     }
 
     const onYearSliderChange = (sDate, eDate) => {
@@ -102,13 +203,10 @@ const LineGraphBox = (props) => {
     }
 
     const getGraphImage = (title) => {
-        //let title = tit+"_2";
-        // console.log('graph title', title);
         var url_base64jp = document.getElementById(title).toDataURL("image/jpg");
         var a = document.getElementById('download_' + title);
         a.href = url_base64jp;
     }
-
 
     useEffect(() => {
         if (props.info && props.info.length > 0) {
@@ -117,11 +215,6 @@ const LineGraphBox = (props) => {
             setEndDate(props.info[props.info.length - 1].dt.substr(0, 4));
         }
     }, [props]);
-
-
-    useEffect(() => {
-        console.log('data', data);
-    }, [data]);
 
     return (
         <LineGraphSection style={{ overflow: 'hidden', position: 'relative' }}>
@@ -147,14 +240,11 @@ const LineGraphBox = (props) => {
                 filterGraphData &&
                 <>
                     <div style={{ display: 'flex', flexDirection: 'column' }}>
-                        <div className='controller'>
-                            <div style={{ textAlign: 'center' }}>
-                                <GraphPeriod
-                                    onClick={props.changeFrequency}
-                                    activePeriod={props.frequency}
-                                />
-                            </div>
-
+                        <div style={{ textAlign: 'center', margin: '10px', display: 'flex', justifyContent: 'space-between' }}>
+                            <GraphPeriod
+                                onClick={(val) => setFrequency(val)}
+                                activePeriod={frequency}
+                            />
                             <div>
                                 <Tooltip placement="top" title={<span>Table View</span>}>
                                     <GraphIcon onClick={() => setShowDrawer(true)}>
@@ -174,41 +264,29 @@ const LineGraphBox = (props) => {
                                     </GraphIcon>
                                 </Tooltip>
                             </div>
-
-                            <div>
-                                <YearLink
-                                    onClick={onYearClick}
-                                    activeyear={yearEnd}
-                                />
-                            </div>
                         </div>
 
-                        <GraphTitle>
-                            <h3>{props.title}</h3>
-                            <h2>Frequency : {props.frequency}</h2>
-                        </GraphTitle>
+                        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                            <GraphTitle>
+                                <h3>{props.title} {frequency}</h3>
+                            </GraphTitle>
+                            <YearLink
+                                onClick={onYearClick}
+                                activeyear={yearEnd}
+                            />
+                        </div>
+
                     </div>
 
-
-                    {/* <Line
-                        datasetIdKey='id'
-                        data={{
-                            labels: ['Jun', 'Jul', 'Aug'],
-                            datasets: [
-                                {
-                                    id: 1,
-                                    label: 'qw',
-                                    data: [5, 6, 7],
-                                },
-                                {
-                                    id: 2,
-                                    label: 'we',
-                                    data: [3, 2, 1],
-                                },
-                            ],
-                        }}
-                    /> */}
-
+                    {
+                        data &&
+                        <div style={{ height: '300px' }}>
+                            <Line
+                                options={LineOptions}
+                                data={data}
+                            />
+                        </div>
+                    }
 
                     <div style={{ margin: '20px 20px' }}>
                         {
@@ -232,6 +310,7 @@ const LineGraphSection = styled.div`
     background-color: #fff;
     border-radius: 10px;
     border: 1px solid #b1b1b1;
+    margin-bottom:10px;
 `;
 
 let GraphTitle = styled.div`
@@ -239,6 +318,8 @@ let GraphTitle = styled.div`
         text-transform: capitalize;
         font-size: 16px; 
         text-align: center;
+        margin-left:15px;
+        color : #096dd9;
     }
 `;
 

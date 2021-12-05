@@ -22,5 +22,5 @@ export {
 
 export {
     fetchDaafData,
-    fetchAssetGraphData
+    fetchAllDaafCharts    
 } from './daaf.action';

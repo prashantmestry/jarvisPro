@@ -33,8 +33,8 @@ let GraphPeriodBox = styled.div`
     display :flex;
     align-items : center;
     span{            
-        border-right : 1px solid #000;
-        color : #000;
+        border-right : 1px solid #b3b3b3;
+        color : #b3b3b3;
         padding : 0 8px;
         text-align : center;
         :hover{

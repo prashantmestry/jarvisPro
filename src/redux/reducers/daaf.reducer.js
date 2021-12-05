@@ -5,17 +5,13 @@ const initialState = {
     allocation_data_error: null,
     allocation_data: null,
 
-    asset_data_loading: false,
-    asset_data_error: null,
-    asset_data: null,
+    chartData: [],
+    chartDataLoading: false,
+    chartDataError: null,
 
-    // percentile_data_loading: false,
-    // percentile_data_error: null,
-    // percentile_data: null,
-
-    // momentum_data_loading: false,
-    // momentum_data_error: null,
-    // momentum_data: null,
+    // asset_data_loading: false,
+    // asset_data_error: null,
+    // asset_data: null,
 }
 
 // Dynamic Asset Alloction Fund Data
@@ -39,25 +35,37 @@ const fetchDaafDataFail = (state, action) => {
 }
 
 // Asset Data.
-const fetchAssetStart = (state) => {
+const fetchAllDaafChartsStart = (state) => {
     return {
         ...state,
-        asset_data_loading: true, asset_data_error: null
+        chartDataLoading: true,
+        chartDataError: null
     }
 }
-const fetchAssetSuccess = (state, action) => {
+const fetchAllDaafChartsSuccess = (state, action) => {
     return {
         ...state,
-        asset_data: action.data, asset_data_loading: false, asset_data_error: null
+        chartData: action.data,
+        chartDataLoading: false,
+        chartDataError: null
     }
 }
-const fetchAssetFail = (state, action) => {
+const fetchAllDaafChartsFail = (state, action) => {
     return {
         ...state,
-        asset_data: null, asset_data_loading: false, asset_data_error: action.data
+        asset_data: [],
+        chartDataLoading: false,
+        chartDataError: action.data
     }
 }
 
+
+// const updateDaafChart = (state, action) => {
+//     return {
+//         ...state,
+//         chartData: action.data
+//     }
+// }
 
 
 // // Percentile Data.
@@ -98,12 +106,15 @@ const reducer = (state = initialState, action) => {
         case actionTypes.FETCH_DAAF_DATA_FAIL:
             return fetchDaafDataFail(state, action);
 
-        case actionTypes.FETCH_ASSET_START:
-            return fetchAssetStart(state, action);
-        case actionTypes.FETCH_ASSET_SUCCESS:
-            return fetchAssetSuccess(state, action);
-        case actionTypes.FETCH_ASSET_FAIL:
-            return fetchAssetFail(state, action);
+        case actionTypes.FETCH_DAAF_CHARTS_START:
+            return fetchAllDaafChartsStart(state, action);
+        case actionTypes.FETCH_DAAF_CHARTS_SUCCESS:
+            return fetchAllDaafChartsSuccess(state, action);
+        case actionTypes.FETCH_DAAF_CHARTS_FAIL:
+            return fetchAllDaafChartsFail(state, action);
+
+        // case actionTypes.UPDATE_DAAF_CHART:
+        //     return updateDaafChart(state, action);
 
         // case actionTypes.FETCH_PERCENTILE_START:
         //     return fetchPercentileStart(state, action);
