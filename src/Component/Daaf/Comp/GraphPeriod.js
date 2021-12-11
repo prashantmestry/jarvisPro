@@ -1,8 +1,10 @@
 import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
+import { MyThemeContext } from '../../../Context/MyThemeContext';
 
 const GraphPeriod = ({ onClick, activePeriod }) => {
 
+    const { theme } = useContext(MyThemeContext);
     const [years] = useState([
         { period: 'daily', display: 'Daily' },
         { period: 'weekly', display: 'Weekly' },
@@ -11,17 +13,17 @@ const GraphPeriod = ({ onClick, activePeriod }) => {
     ]);
 
     return (
-        <GraphPeriodBox>
+        <GraphPeriodBox theme={theme}>
             {
                 years.map((v, index) => {
                     return (
-                        <span
+                        <a
                             className={activePeriod == v.period ? 'active' : null}
                             key={index}
                             onClick={() => onClick(v.period)}
                         >
                             {v.display}
-                        </span>
+                        </a>
                     )
                 })
             }
@@ -31,26 +33,21 @@ const GraphPeriod = ({ onClick, activePeriod }) => {
 
 let GraphPeriodBox = styled.div`
     display :flex;
-    align-items : center;
-    border: 1px solid #b3b3b3;
-    border-radius: 20px;
-    padding: 2px;
+    align-items : center;     
     font-size: 12px;
-    span{            
-        border-right : 1px solid #b3b3b3;
-        color : #b3b3b3;
-        padding : 0 8px;
+    margin-left:10px;
+    a{                    
+        margin:0 5px;
+        color: ${props => props.theme.color.text};
         text-align : center;
-        :hover{
-            color : #000;
+        :hover{            
             cursor : pointer;
-        }
-        :last-child{
-            border-right : none;
-        }
+            border-bottom:1px solid;
+        }        
     }
-    span.active{
-        color : #000;
+    a.active{        
+        font-weight:700;
+        border-bottom:1px solid;
     }
 `;
 

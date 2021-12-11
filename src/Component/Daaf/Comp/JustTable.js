@@ -1,12 +1,13 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { headerYearFormatChange } from '../../../Utils/globalFunctions';
-import moment from 'moment';
+import { MyThemeContext } from '../../../Context/MyThemeContext';
 
 const JustTable = (props) => {
 
+    const { theme } = useContext(MyThemeContext);
     return (
-        <TableBox>
+        <TableBox theme={theme}>
             <div className='tableHead'>{props.title || 'Table'}</div>
             <div className='table-scroll'>
                 <table>
@@ -27,7 +28,7 @@ const JustTable = (props) => {
                             props.bodyData && props.bodyData.map((v, i) => {
                                 return (
                                     <tr key={i}>
-                                        <th>{props.replaceTitle[v.attr] || v.attr}</th>
+                                        <td>{props.replaceTitle[v.attr] || v.attr}</td>
                                         {
                                             props.headerData && props.headerData.map((v1, index) => {
                                                 return (
@@ -67,9 +68,9 @@ let TableBox = styled.div`
         border-collapse: separate;
         border-spacing: 0;           
         border-top: 1px solid #000;        
-        border-right: 1px solid #000;        
-
-      th, td {
+        border-right: 1px solid #000;   
+        font-weight : 200;       
+    th, td {
         padding: 5px 8px;
         border-bottom: 1px solid #000;
         border-right: 1px solid #000;        
@@ -77,37 +78,37 @@ let TableBox = styled.div`
         :last-child{
             border-right: none;
         }
-      }     
-      thead th {
-        background: #f3f3f3;
-        color: #000;
+    }     
+    thead th {              
         position: -webkit-sticky;
         position: sticky;
         top: 0;       
         min-width:130px; 
-        padding: 5px 8px;
-        font-weight : 500;  
+        padding: 5px 8px;            
         text-align:right;
-        :first-child{
+        :first-child{            
+            left: 0;
+            z-index:1;
             text-align:left;
-        }
-        
-      }
-      tbody td{
-          text-align : right;
-      }    
-        th:first-child {
+            background: ${props => props.theme.color.bg};
+            border-left:1px solid #000;      
+        }        
+    }
+    td{
+        text-align : right;        
+        :first-child {
             position: -webkit-sticky;
             position: sticky;
-            left: 0;
-            z-index: 2;        
-            background :#f3f3f3;
-            border-left:1px solid #000;    
-        }        
-        thead tr{
-            background : #fff;
-        }          
-    }
+            left: 0;   
+            z-index:1;       
+            border-left:1px solid #000;            
+            text-align:left;
+            background: ${props => props.theme.color.bg};        
+        } 
+    }           
+    thead tr{
+        background: ${props => props.theme.color.bg};
+    }          
 }
 `;
 

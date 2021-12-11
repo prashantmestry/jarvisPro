@@ -1,9 +1,11 @@
-import React, { useState, useEffect, memo } from 'react';
+import React, { useState, useEffect, memo, useContext } from 'react';
 import styled from 'styled-components';
+import { MyThemeContext } from '../../Context/MyThemeContext';
 import { multiplyPercent } from '../../Utils/globalFunctions';
 
 const EquityDetail = (props) => {
 
+    const { theme } = useContext(MyThemeContext);
     const [data, setData] = useState([]);
 
     useEffect(() => {
@@ -16,8 +18,8 @@ const EquityDetail = (props) => {
     }, [props]);
 
     return (
-        <List>
-            <h3>{props.title}</h3>
+        <List theme={theme}>
+            <h3>Equity Allocation</h3>
             <ul>
                 {
                     data && data.map((v, index) => {
@@ -38,20 +40,21 @@ const EquityDetail = (props) => {
     )
 }
 
-let List = styled.div`    
-    border : 1px solid #dbdbdb;
+let List = styled.div`        
     border-radius : 10px;
-    padding:5px;
+    padding:10px 10px 0px 10px;
     overflow-y:hidden;
     height:100%;
-    background: #fff;
+    background: ${props => props.theme.color.bg2};
     min-width:200px;
-    h3{
-        text-align:left;        
-        padding:10px;
-        border-bottom : 1px solid #000;
-        font-size:16px;
-        font-weight:600;
+    h3{                
+        font-size: 14px;
+        font-weight: 600;
+        text-align: left;
+        border-bottom: 1px solid ${props => props.theme.color.text};
+        padding: 0 0 10px 0;
+        color: ${props => props.theme.color.text};
+        text-transform: uppercase;
     }
     ul{                
         max-height : 330px;        
@@ -61,11 +64,12 @@ let List = styled.div`
         li{
             display : flex;
             justify-content : space-between;
-            border-bottom : 1px solid #dbdbdb;
-            padding: 10px; 
+            border-bottom: 1px solid ${props => props.theme.color.bg};
+            padding: 5px; 
             font-weight : 500;            
             :last-child{
                 border-bottom:none;
+                padding-bottom: 0px;
             }           
         }
     }    

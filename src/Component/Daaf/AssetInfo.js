@@ -29,7 +29,7 @@ const AssetInfo = (props) => {
                 }
             </ul>
             <ul className='item_2' >
-                <MomentDiv>
+                <MomentDiv theme={theme}>
                     <h3>Current Momentum</h3>
                     <div style={{ fontWeight: '500', fontSize: '30px' }}>Positive</div>
                 </MomentDiv>
@@ -44,14 +44,13 @@ let Info = styled.div`
     grid-template-column : auto 200px;
     border-radius:10px;
     grid-gap:10px;
-    background : ${props => props.theme.color.bg};    
+    background : ${props => props.theme.color.bg2};        
     padding:10px;
     ul{
         list-style :none;
         padding:0;
         margin:0;        
     }
-
     .item_1{
         grid-column-start : 1;
         grid-column-end : 3;
@@ -68,7 +67,7 @@ let Info = styled.div`
         place-items :  center;
         text-align: center;
         padding-left:10px;
-        border-left:1px solid ${props => props.theme.color.text};
+        border-left:1px solid ${props => props.theme.color.bg};
     }
 `;
 
@@ -76,10 +75,11 @@ let MomentDiv = styled.div`
     padding : 35px;        
     border-radius:10px;        
     font-size : 18px;
-    background: #fff;
+    background: ${props => props.theme.color.bg};
     h3{
         font-size: 14px;
-        text-transform : uppercase;        
+        text-transform : uppercase;      
+        color: ${props => props.theme.color.text}  
     }
 `;
 

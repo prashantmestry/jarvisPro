@@ -1,14 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import styled from 'styled-components';
 import { multiplyPercent } from '../../Utils/globalFunctions';
 import { ArrowUpOutlined, ArrowDownOutlined, SwapOutlined } from '@ant-design/icons';
+import { MyThemeContext } from '../../Context/MyThemeContext';
 
 const InfoList = (props) => {
 
+    const { theme} = useContext(MyThemeContext);
     const { pval, nval, nm, fmt } = props.data;
 
     return (
-        <BoxList>
+        <BoxList theme={theme}>
             <h3>{nm}</h3>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <div style={{ display: 'flex', flexDirection: 'column', width: '75%' }}>
@@ -53,51 +55,52 @@ const InfoList = (props) => {
     )
 }
 
-let BoxList = styled.li`         
+let BoxList = styled.li` 
+    padding: 5px 10px 5px 10px;
+    display: flex;        
+    flex-direction : column;         
+    background : ${props => props.theme.color.bg};
+    border-radius : 0px 10px 10px 10px;
+    margin-right:10px;    
+    min-width : 250px;      
+    min-height : 100px;        
+
     .innerBox{        
         display: flex; 
         justify-content: space-between;
-        border-bottom: 1px solid #000;
+        border-bottom: 1px solid ${props => props.theme.color.bg2};
         padding: 8px; 
         align-items: center;
+    }        
+    h3{            
+        font-size : 14px;            
+        font-weight :600;
+        text-align : left;            
+        border-bottom : 1px solid ${props => props.theme.color.text};
+        padding:1px 0 7px 0;
+        color : ${props => props.theme.color.text};
+        text-transform:uppercase;
+    }    
+    .arrow-icon{
+        font-weight : bold;
+        font-size : 20px;
     }
-        padding: 5px 10px 5px 10px;
-        display: flex;        
-        flex-direction : column;         
-        background : #fff;
-        border-radius : 0px 10px 10px 10px;
-        margin-right:10px;    
-        min-width : 250px;      
-        min-height : 100px;
+    .val_txt{
+        font-size : 14px;
+        font-weight : 500;
+    }
+    .high{ color : #34d82b }
+    .low{ color : #ff5c0c }
+    .equal{ color : #e3de20}
 
-        h3{            
-            font-size : 16px;            
-            font-weight :600;
-            text-align : left;            
-            border-bottom : 1px solid #dbdbdb;
-            padding:5px 0;
-        }
-        
-        .arrow-icon{
-            font-weight : bold;
-            font-size : 20px;
-        }
-        .val_txt{
-            font-size : 14px;
-            font-weight : 500;
-        }
-        .high{ color : #34d82b }
-        .low{ color : #ff5c0c }
-        .equal{ color : #000 }
-
-        .new_val{
-            font-weight : 500;            
-            font-size : 25px;
-            color :  #19c991;
-        }
-        .old_val{
-            font-weight : 500;            
-        }    
+    .new_val{
+        font-weight : 500;            
+        font-size : 25px;
+        color :  #19c991;
+    }
+    .old_val{
+        font-weight : 500;            
+    }    
 }
 `;
 

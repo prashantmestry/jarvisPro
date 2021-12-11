@@ -9,10 +9,10 @@ import { Drawer, Tooltip } from 'antd';
 import { TableOutlined, CameraOutlined } from '@ant-design/icons';
 import JustTable from '../Comp/JustTable';
 import withLineGraph from '../Hoc/withLineGraph';
-import faker from 'faker';
 
-import { Bar, Line, Pie, Doughnut } from 'react-chartjs-2';
+import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, BarElement, Title, Legend } from 'chart.js';
+import { MyThemeContext } from '../../../Context/MyThemeContext';
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, BarElement, Title, Legend);
 
 function getColor(index) {
@@ -26,6 +26,7 @@ function getColor(index) {
 
 const LineGraphBox = (props) => {
 
+    const { theme } = useContext(MyThemeContext);
     const [yearEnd, setyearEnd] = useState(5);
     const [frequency, setFrequency] = useState('weekly');
     const [startDate, setStartDate] = useState(null);
@@ -35,8 +36,11 @@ const LineGraphBox = (props) => {
     const [filterGraphData, setFilterGraphData] = useState(props.info);
     const [showDrawer, setShowDrawer] = useState(false);
 
-
     const LineOptions = {
+        title: {
+            display: true,
+            text: '',
+        },
         tooltips: {
             mode: 'index',
             position: 'average',
@@ -66,10 +70,6 @@ const LineGraphBox = (props) => {
         },
         layout: {
             Xpadding: { left: 10, right: 15, top: 0, bottom: 10 }
-        },
-        title: {
-            display: false,
-            text: props.title,
         },
         legend: { display: true, position: 'top' },
         maintainAspectRatio: false,
@@ -173,7 +173,6 @@ const LineGraphBox = (props) => {
         setData(all);
     }
 
-
     const onYearClick = (value) => {
         setyearEnd(value);
         if (value != 'all') {
@@ -217,8 +216,66 @@ const LineGraphBox = (props) => {
     }, [props]);
 
     return (
-        <LineGraphSection style={{ overflow: 'hidden', position: 'relative' }}>
-            <TableDrawer                
+        <LineGraphSection theme={theme}>
+            {
+                filterGraphData &&
+                <>
+                    <TopChartSetting theme={theme}>
+                        <GraphPeriod
+                            onClick={(val) => setFrequency(val)}
+                            activePeriod={frequency}
+                        />
+                        <div>
+                            <GraphTitle>{props.title} {frequency}</GraphTitle>
+                            <Tooltip placement="top" title={<span>Table View</span>}>
+                                <GraphIcon onClick={() => setShowDrawer(true)}>
+                                    <TableOutlined className="icons" />
+                                </GraphIcon>
+                            </Tooltip>
+                            <Tooltip placement="top" title={<span>Save this graph as an image</span>}>
+                                <GraphIcon>
+                                    <a
+                                        id={'download_' + props.title + "_2"}
+                                        download={props.title + "_image.jpg"}
+                                        href=""
+                                        onClick={() => getGraphImage(props.title + "_2")}
+                                    >
+                                        <CameraOutlined className='icons' />
+                                    </a>
+                                </GraphIcon>
+                            </Tooltip>
+                        </div>
+                        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                            <YearLink
+                                onClick={onYearClick}
+                                activeyear={yearEnd}
+                            />
+                        </div>
+                    </TopChartSetting>
+                    {
+                        data &&
+                        <ChartContainer>
+                            <Line
+                                options={LineOptions}
+                                data={data}
+                            />
+                        </ChartContainer>
+                    }
+                    <div style={{ margin: '20px 20px' }}>
+                        {
+                            startDate == minDate &&
+                            <SliderYear
+                                min={parseInt(startDate) || 1990}
+                                max={parseInt(endDate) || (new Date()).getFullYear()}
+                                minDisplay={minDate}
+                                onYearSliderChange={onYearSliderChange}
+                            />
+                        }
+                    </div>
+                </>
+            }
+            <TableDrawer
+                theme={theme}
                 placement="top"
                 onClose={() => setShowDrawer(false)}
                 closable={true}
@@ -232,94 +289,47 @@ const LineGraphBox = (props) => {
                     headerData={props.header_data}
                     bodyData={props.body_data}
                 />
-
             </TableDrawer>
-
-            {
-                filterGraphData &&
-                <>
-                    <div style={{ display: 'flex', flexDirection: 'column' }}>
-                        <div style={{ textAlign: 'center', margin: '10px', display: 'flex', justifyContent: 'space-between' }}>
-                            <GraphPeriod
-                                onClick={(val) => setFrequency(val)}
-                                activePeriod={frequency}
-                            />
-                            <div>
-                                <Tooltip placement="top" title={<span>Table View</span>}>
-                                    <GraphIcon onClick={() => setShowDrawer(true)}>
-                                        <TableOutlined className="icons" />
-                                    </GraphIcon>
-                                </Tooltip>
-                                <Tooltip placement="top" title={<span>Save this graph as an image</span>}>
-                                    <GraphIcon>
-                                        <a
-                                            id={'download_' + props.title + "_2"}
-                                            download={props.title + "_image.jpg"}
-                                            href=""
-                                            onClick={() => getGraphImage(props.title + "_2")}
-                                        >
-                                            <CameraOutlined className='icons' />
-                                        </a>
-                                    </GraphIcon>
-                                </Tooltip>
-                            </div>
-                        </div>
-
-                        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                            <GraphTitle>
-                                <h3>{props.title} {frequency}</h3>
-                            </GraphTitle>
-                            <YearLink
-                                onClick={onYearClick}
-                                activeyear={yearEnd}
-                            />
-                        </div>
-
-                    </div>
-
-                    {
-                        data &&
-                        <div style={{ height: '300px' }}>
-                            <Line
-                                options={LineOptions}
-                                data={data}
-                            />
-                        </div>
-                    }
-
-                    <div style={{ margin: '20px 20px' }}>
-                        {
-                            startDate == minDate &&
-                            <SliderYear
-                                min={parseInt(startDate) || 1990}
-                                max={parseInt(endDate) || (new Date()).getFullYear()}
-                                minDisplay={minDate}
-                                onYearSliderChange={onYearSliderChange}
-                            />
-                        }
-                    </div>
-
-                </>
-            }
-        </LineGraphSection>
+        </LineGraphSection >
     )
 }
 
 const LineGraphSection = styled.div`
-    background-color: #fff;
-    border-radius: 10px;
-    border: 1px solid #dbdbdb;
-    margin-bottom:10px;
+    overflow: hidden;
+    position: relative;   
+    background-color: ${props => props.theme.color.bg};    
+    border-radius: 5px;        
+    margin-bottom:15px;
+    padding:5px;
+
+    .chartTopDiv{
+        display: flex;
+        justify-content: space-between;        
+        text-align: center; 
+        margin: 10px;        
+    }
 `;
 
-let GraphTitle = styled.div`
-    h3{
-        text-transform: capitalize;
-        font-size: 16px; 
-        text-align: center;
-        margin-left:15px;
-        color : #096dd9;
-    }
+const TopChartSetting = styled.div`
+    display: flex; 
+    justify-content: space-between;     
+    background : ${props => props.theme.color.bg2};
+    border-radius: 2px;
+    padding:5px 0;
+    margin-bottom:5px;
+`;
+
+let ChartContainer = styled.div`
+    border:1px solid ${props => props.theme.color.bg2};
+    height: 300px;     
+    border-radius:2px;
+`;
+
+let GraphTitle = styled.span`    
+    text-transform: capitalize;
+    font-size: 16px; 
+    text-align: center;
+    margin-left:15px;         
 `;
 
 let GraphIcon = styled.span`
@@ -328,20 +338,17 @@ let GraphIcon = styled.span`
     .icons{
         cursor: pointer;
         font-size: 15px;
-        color : #000;
-        :hover {
-            color : red;
-        }
+        color : ${props => props.theme.color.text};        
     }
 `;
 
 let TableDrawer = styled(Drawer)`    
     .ant-drawer-content{
-        background-color : #fff;
-        border-radius : 10px 10px  0  0;
+        background-color : ${props => props.theme.color.bg2};
+        border-radius : 2px 2px  0  0;        
     }
     .ant-drawer-close{
-        color : #000;
+        color : ${props => props.theme.color.text};
     }
 `
 export default memo(withLineGraph(LineGraphBox));

@@ -10,39 +10,34 @@ import ViewGridCellStyleTable from './Component/Grid/ViewGridCellStyleTable';
 import ViewDraggable from './Component/ViewDraggable/ViewDraggable';
 import ViewDaafChart from './Component/Daaf/ViewDaafChart';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import MyThemeContextProvider from './Context/MyThemeContext';
-
+import { MyThemeContext } from './Context/MyThemeContext';
+import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine-dark.css';
 import { Layout } from 'antd';
 import ViewAllUsers from './Component/Users/ViewAllUsers';
-import { useEffect } from 'react';
-import { connect } from 'react-redux';
+import { useContext } from 'react';
+
 const { Header, Content, Footer } = Layout;
+
+const GlobalStyle = createGlobalStyle`
+  body {    
+    background-color : ${props => props.theme.color.bg};
+    color :${props => props.theme.color.text};    
+  }  
+  .ant-layout{
+    background-color : ${props => props.theme.color.bg};
+  }
+`;
 
 function App() {
 
-  useEffect(() => {
-
-    let hero = {
-      _name : 'prashant',
-      getInfo : function(){
-        return this;
-      }
-    }
-
-    let p1 = hero.getInfo;
-
-    console.log('output');
-    console.log(p1());
-    console.log(hero.getInfo());
-
-
-  }, []);
+  const { theme, currentTheme } = useContext(MyThemeContext);
 
   return (
-    <MyThemeContextProvider>
+    <ThemeProvider theme={theme} currentTheme={currentTheme}>
+      <GlobalStyle theme={theme} currentTheme={currentTheme} />
       <Layout style={{ minHeight: '100vh' }}>
         <Router>
           <Navigation />
@@ -69,7 +64,7 @@ function App() {
           </Layout>
         </Router>
       </Layout>
-    </MyThemeContextProvider>
+    </ThemeProvider>
   );
 }
 

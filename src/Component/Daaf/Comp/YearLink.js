@@ -16,13 +16,13 @@ const YearLink = ({ onClick, activeyear }) => {
             {
                 years.map((v, index) => {
                     return (
-                        <span
+                        <a
                             className={activeyear == v.year ? 'active' : null}
                             key={index}
                             onClick={() => onClick(v.year)}
                             id={v.id}>
                             {v.display}
-                        </span>
+                        </a>
                     )
                 })
             }
@@ -31,32 +31,25 @@ const YearLink = ({ onClick, activeyear }) => {
 }
 
 let YearList = styled.div`
-    display : flex;    
-    justify-content : center;
-    align-items:center;
-    text-align:center;
-    font-weight :600;
-    font-size:10px;
-    span{        
-        margin-right:10px;        
-        padding:5px;        
-        border : 1px solid #b3b3b3;
-        color : #b3b3b3;
-        width : 27px;
-        height : 27px;
-        border-radius:15px;                     
-        display : flex;
+    display : flex;        
+    text-align:center;    
+    font-size:12px;
+    margin-right:10px;
+    a{  
+        display : flex;      
+        margin:0 5px;    
+        font-weight:500;     
+        color: ${props => props.theme.color.text};                                       
         justify-content : center;
         align-items:center;
         cursor : pointer;
         :hover{
-            border : 1px solid #000;
-            color : #000;    
+            border-bottom : 1px solid;            
         }
     }
-    span.active{
-        border : 1px solid #000;
-        color : #000;
+    a.active{
+        font-weight:700;
+        border-bottom : 1px solid;        
     }
 `;
 

@@ -28,7 +28,7 @@ class ViewDaafChart extends React.Component {
     render() {
         const { theme } = this.context;
         return (
-            <div>
+            <div>                
                 {
                     this.props.allocation_data_loading &&
                     <div style={{ textAlign: 'center' }}>
@@ -60,8 +60,7 @@ class ViewDaafChart extends React.Component {
                         <MidBox>
                             {
                                 this.props.allocation_data &&
-                                <EquityDetail
-                                    title='Equity Allocation'
+                                <EquityDetail                                    
                                     display_format={this.props.allocation_data.fmt}
                                     equity_average={this.props.allocation_data && this.props.allocation_data.eqtyavg || null} />
                             }
