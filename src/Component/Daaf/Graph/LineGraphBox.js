@@ -7,7 +7,7 @@ import SliderYear from '../Comp/SliderYear';
 import { roundNumber } from '../../../Utils/globalFunctions';
 import { Drawer, Tooltip } from 'antd';
 import { TableOutlined, CameraOutlined } from '@ant-design/icons';
-import JustTable from '../JustTable';
+import JustTable from '../Comp/JustTable';
 import withLineGraph from '../Hoc/withLineGraph';
 import faker from 'faker';
 
@@ -218,8 +218,7 @@ const LineGraphBox = (props) => {
 
     return (
         <LineGraphSection style={{ overflow: 'hidden', position: 'relative' }}>
-            <TableDrawer
-                title=""
+            <TableDrawer                
                 placement="top"
                 onClose={() => setShowDrawer(false)}
                 closable={true}
@@ -309,7 +308,7 @@ const LineGraphBox = (props) => {
 const LineGraphSection = styled.div`
     background-color: #fff;
     border-radius: 10px;
-    border: 1px solid #b1b1b1;
+    border: 1px solid #dbdbdb;
     margin-bottom:10px;
 `;
 
@@ -338,11 +337,11 @@ let GraphIcon = styled.span`
 
 let TableDrawer = styled(Drawer)`    
     .ant-drawer-content{
-        background-color : yellow;
+        background-color : #fff;
         border-radius : 10px 10px  0  0;
     }
     .ant-drawer-close{
-        color : red;
+        color : #000;
     }
 `
 export default memo(withLineGraph(LineGraphBox));

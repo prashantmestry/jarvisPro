@@ -1,21 +1,23 @@
-import React, { useEffect, memo, useState } from 'react';
+import React, { useEffect, memo, useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
-import { Layout, Menu } from 'antd';
+import { Layout, Menu, Switch } from 'antd';
 import {
     CaretLeftOutlined, AppstoreOutlined, BarChartOutlined, CloudOutlined, ShopOutlined, TeamOutlined, UserOutlined
 } from '@ant-design/icons';
+import { MyThemeContext } from '../../Context/MyThemeContext';
 
 const { Sider } = Layout;
 
 const Navigation = (props) => {
 
     const [collapsed, setCollapsed] = useState(false);
+    const { toggleTheme } = useContext(MyThemeContext);
 
     const allLinks = [
         { path: '/', name: 'Home' },
         { path: '/portfolio', name: 'Portfolio' },
-        { path: '/grid-table', name: 'Grid Table' },        
+        { path: '/grid-table', name: 'Grid Table' },
         { path: '/myblog', name: 'My Blog' },
         { path: '/users', name: 'Users' },
         { path: '/company', name: 'Company' },
@@ -30,7 +32,7 @@ const Navigation = (props) => {
             case '/portfolio':
                 return <BarChartOutlined />
             case '/grid-table':
-                return <CloudOutlined />            
+                return <CloudOutlined />
             case '/myblog':
                 return <TeamOutlined />
             case '/users':
@@ -42,14 +44,16 @@ const Navigation = (props) => {
         }
     }
 
-
     return (
         <Sider
             collapsible
             collapsed={collapsed}
             onCollapse={(collapsed) => setCollapsed(collapsed)}
         >
-            <div className="logo" style={{ height: '32px', margin: '16px', background: '#1e4970' }} />
+            <div style={{ height: '32px', margin: '16px', textAlign: 'center' }} >
+                <Switch defaultChecked onChange={(checked) => toggleTheme(checked ? 'light' : 'dark')} />
+            </div>
+
             <Menu theme="dark" mode="inline"
                 defaultSelectedKeys={props.location ? props.location.pathname : '/'}
             >

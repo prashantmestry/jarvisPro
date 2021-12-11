@@ -8,9 +8,10 @@ import Loading from '../Common/Loading';
 import AssetInfo from './AssetInfo';
 import EquityDetail from './EquityDetail';
 import LineGraphBox from './Graph/LineGraphBox';
+import { MyThemeContext } from '../../Context/MyThemeContext';
 
 class ViewDaafChart extends React.Component {
-
+    static contextType = MyThemeContext;
     state = {
         loading: false
     }
@@ -20,15 +21,12 @@ class ViewDaafChart extends React.Component {
         this.props.fetchAllDaafCharts();
     }
 
-    componentDidUpdate(preProps) {
-    }
-
     getNewDate = (dt) => {
         return moment(dt, 'YYYY-MM-DD').format('Do MMM YYYY');
     }
 
     render() {
-
+        const { theme } = this.context;
         return (
             <div>
                 {
@@ -72,7 +70,7 @@ class ViewDaafChart extends React.Component {
                                 {
                                     this.props.chartDataLoading &&
                                     <div style={{ textAlign: 'center', height: '100%', display: 'grid', alignItems: 'center' }}>
-                                        <Loading text='Loading Chart Data...'/>
+                                        <Loading text='Loading Chart Data...' />
                                     </div>
                                 }
                                 {

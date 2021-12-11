@@ -32,6 +32,10 @@ const GraphPeriod = ({ onClick, activePeriod }) => {
 let GraphPeriodBox = styled.div`
     display :flex;
     align-items : center;
+    border: 1px solid #b3b3b3;
+    border-radius: 20px;
+    padding: 2px;
+    font-size: 12px;
     span{            
         border-right : 1px solid #b3b3b3;
         color : #b3b3b3;

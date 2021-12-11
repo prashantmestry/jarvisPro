@@ -1,56 +1,55 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import styled from 'styled-components';
 import InfoList from './InfoList';
+import { MyThemeContext } from '../../Context/MyThemeContext';
 
 const AssetInfo = (props) => {
 
     const [attribute, setAttribute] = useState(null);
+    const { theme } = useContext(MyThemeContext);
 
     useEffect(() => {
         setAttribute(props.asset_attribute);
     }, [props.asset_attribute]);
 
     return (
-        <>
-            <Info>
-                <ul className='item_1'>
-                    {
-                        attribute && attribute.map((v, index) => {
-                            return (
-                                <InfoList key={index}
-                                    data={{
-                                        ...v,
-                                        fmt: props.display_format
-                                    }}
-                                />
-                            )
-                        })
-                    }
-                </ul>
-                <ul className='item_2' >
-                    <MomentDiv>
-                        <h3>Current Momentum</h3>
-                        <div style={{ fontWeight: '500', fontSize: '30px' }}>Positive</div>
-                    </MomentDiv>
+        <Info theme={theme}>
+            <ul className='item_1'>
+                {
+                    attribute && attribute.map((v, index) => {
+                        return (
+                            <InfoList key={index}
+                                data={{
+                                    ...v,
+                                    fmt: props.display_format
+                                }}
+                            />
+                        )
+                    })
+                }
+            </ul>
+            <ul className='item_2' >
+                <MomentDiv>
+                    <h3>Current Momentum</h3>
+                    <div style={{ fontWeight: '500', fontSize: '30px' }}>Positive</div>
+                </MomentDiv>
 
-                </ul>
-            </Info>          
-        </>
+            </ul>
+        </Info>
     )
 }
-
 
 let Info = styled.div`
     display:grid;
     grid-template-column : auto 200px;
     border-radius:10px;
     grid-gap:10px;
-    background : #dbdbdb;
+    background : ${props => props.theme.color.bg};    
     padding:10px;
     ul{
         list-style :none;
         padding:0;
-        margin:0;
+        margin:0;        
     }
 
     .item_1{
@@ -58,6 +57,9 @@ let Info = styled.div`
         grid-column-end : 3;
         overflow : auto;
         display :flex;        
+        li:last-child{
+            margin-right:0px;
+        }
     }
     .item_2{
         grid-column-start : 3;
@@ -65,18 +67,19 @@ let Info = styled.div`
         display: flex;
         place-items :  center;
         text-align: center;
+        padding-left:10px;
+        border-left:1px solid ${props => props.theme.color.text};
     }
 `;
 
 let MomentDiv = styled.div`
-    padding : 33px;        
-    border : 1px solid #000;
-    border-radius:10px;    
+    padding : 35px;        
+    border-radius:10px;        
     font-size : 18px;
+    background: #fff;
     h3{
         font-size: 14px;
-        text-transform : uppercase;
-        color : #000;
+        text-transform : uppercase;        
     }
 `;
 
