@@ -19,7 +19,7 @@ import { Layout } from 'antd';
 import ViewAllUsers from './Component/Users/ViewAllUsers';
 import { useContext } from 'react';
 
-const { Header, Content, Footer } = Layout;
+const { Header, Content } = Layout;
 
 const GlobalStyle = createGlobalStyle`
   body {    
@@ -44,7 +44,7 @@ function App() {
           <Layout className="site-layout">
             <Header className="site-layout-background" style={{ padding: 0 }} />
             <Content style={{ margin: '0 16px' }}>
-              <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
+              <div className="site-layout-background" style={{ padding: 15, minHeight: 360 }}>
                 <Switch>
                   <Route path="/portfolio"> <Portfolio /></Route>
                   <Route path="/grid-table">
@@ -60,7 +60,6 @@ function App() {
                 </Switch>
               </div>
             </Content>
-            <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
           </Layout>
         </Router>
       </Layout>

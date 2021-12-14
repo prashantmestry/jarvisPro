@@ -16,6 +16,8 @@ export const UPDATE_CHART_LIST = 'UPDATE_CHART_LIST';
 
 //Company
 export const SET_COMPANY_INFO = 'SET_COMPANY_INFO';
+export const FETCH_COMPANY_LIST_START = 'FETCH_COMPANY_LIST_START';
+export const FETCH_COMPANY_LIST_SUCCESS = 'FETCH_COMPANY_LIST_SUCCESS';
 
 // Daaf : Dynamic Asset Allocation
 

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import * as actions from '../../redux/actions/index';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
@@ -7,9 +7,9 @@ import SummaryWidget from './SummaryWidget';
 
 const BlogView = (props) => {
 
-    let addNewBlog = () => {
-        props.createBlog(props.blogList.length + 1);
-    }
+    // let addNewBlog = () => {
+    //     props.createBlog(props.blogList.length + 1);
+    // }
 
     return (
         <BlogListDiv>

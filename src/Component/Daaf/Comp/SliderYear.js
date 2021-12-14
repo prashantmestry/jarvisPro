@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Slider, message } from 'antd';
+import { Slider } from 'antd';
 import styled from 'styled-components';
+import { MyThemeContext } from '../../../Context/MyThemeContext';
 
 const SliderYear = (props) => {
+    const { theme } = useContext(MyThemeContext);
     const [min, setMin] = useState(props.min);
     const [max, setMax] = useState(props.max);
     const [marks, setMarks] = useState();
-    const [defaultSet, setDefaultSet] = useState([props.min, props.max]);    
+    const [defaultSet, setDefaultSet] = useState([props.min, props.max]);
 
     useEffect(() => {
         setMin(props.min);
@@ -27,23 +29,24 @@ const SliderYear = (props) => {
 
     //
     let onChangeHandler = (value) => {
-
         if (value[0] >= min && value[1] <= max) {
             setMarks({
                 [min]: {
-                    style: { color: '#096dd9' },
+                    //style: { color: '#096dd9' },
+                    style: { color: theme.color.text },
                     label: <strong>{min}</strong>
                 },
                 [value[0]]: {
-                    style: { color: '#181d1f' },
+                    //style: { color: '#181d1f' },
                     label: value[0]
                 },
                 [value[1]]: {
-                    style: { color: '#181d1f' },
+                    //style: { color: '#181d1f' },
                     label: value[1]
                 },
                 [max]: {
-                    style: { color: '#096dd9' },
+                    //style: { color: '#096dd9' },
+                    style: { color: theme.color.text },
                     label: <strong>{max}</strong>
                 }
             });
@@ -52,41 +55,39 @@ const SliderYear = (props) => {
     };
 
     return (
-        <>
-            <RangeSlider
-                min={min}
-                max={max}
-                range
-                onAfterChange={onChangeHandler}
-                marks={marks}
-                defaultValue={defaultSet}
-            />
-        </>
+        <RangeSlider
+            theme={theme}
+            min={min}
+            max={max}
+            range
+            onAfterChange={onChangeHandler}
+            marks={marks}
+            defaultValue={defaultSet}
+        />
     );
 };
 
 export default SliderYear;
 
-
-const RangeSlider = styled(Slider)`
+const RangeSlider = styled(Slider)`    
    & .ant-slider-rail {        
-        background-color: #f5f5f5;    
+        background-color: ${props => props.theme.color.bg2};    
         height:2px;
     }
-    .ant-slider-track {        
-        background-color: gray;
+    .ant-slider-track {                
         height:2px;
+        background : ${props => props.theme.color.text};    
     }
     & .ant-slider:hover .ant-slider-track {
-        background-color: green;
+        Xbackground-color: green;
         height:2px;
     }    
     .ant-slider-handle {
         width: 15px;
         height: 20px;
         margin-top: -8px;
-        background-color: #cbcbcb;
-        border: 0;
+        background-color: ${props => props.theme.color.bg2};
+        border:1px solid ${props => props.theme.color.text};        
         border-radius: 0;
         border-radius : 2px;        
         Xbox-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
@@ -99,11 +100,11 @@ const RangeSlider = styled(Slider)`
         justify-content: center;
         font-weight: bold;
         font-size: 8px;
-        color: #000;
+        color: ${props => props.theme.color.text};
         padding-left: 1px;        
         : before{
             content: "||";
-            color : #000;
+            Xcolor: ${props => props.theme.color.text};
         }
     }
     .ant-slider-mark {
@@ -124,8 +125,7 @@ const RangeSlider = styled(Slider)`
             }
         }
     }
-    .ant-slider-mark-text-active {
-        Xcolor: rgba(0, 0, 0, 0.65);
-        color: #000;
+    .ant-slider-mark-text-active {        
+        color: ${props => props.theme.color.text};
     }    
 `

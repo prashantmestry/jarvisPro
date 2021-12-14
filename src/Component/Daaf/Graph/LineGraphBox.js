@@ -62,8 +62,8 @@ const LineGraphBox = (props) => {
             }
         },
         animation: {
-            duration: 800,
-            //easing : 'easeInQuint'
+            duration: 200,
+            easing : 'easeInQuint'
             // onProgress: function (animation) {
             //     progress.value = animation.animationObject.currentStep / animation.animationObject.numSteps;
             // }
@@ -261,7 +261,7 @@ const LineGraphBox = (props) => {
                             />
                         </ChartContainer>
                     }
-                    <div style={{ margin: '20px 20px' }}>
+                    <div style={{ padding: '30px 10px 10px 10px' }}>
                         {
                             startDate == minDate &&
                             <SliderYear

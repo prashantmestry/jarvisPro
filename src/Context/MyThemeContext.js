@@ -7,10 +7,17 @@ let darkThemeColor = {
         text: '#e1e1e1',
 
         bg: '#03214e',
-        bg2: '#0a2c60',        
+        bgBorder: '#174387',
+
+        bg2: '#0a2c60',
+        bg2Border: '#204683',
+
+        bgComp: 'red',
         green: '#19c991',
         yellow: '#e3de20',
-        red: '#ff6353'
+        red: '#ff6353',
+
+        active: '#0a9b39'
     }
 };
 
@@ -20,11 +27,17 @@ let lightThemeColor = {
         text: '#1e1e1e',
         bgPlain: '#fff',
         bg: '#fff',
-        bg2: '#efefef',        
+        bgBorder: '#d5d5d5',
 
+        bg2: '#efefef',
+        bg2Border: '#d7d7d7',
+
+        bgComp: 'green',
         green: '#19c991',
         yellow: '#e3de20',
-        red: '#ff6353'
+        red: '#ff6353',
+
+        active: '#585858'
     }
 };
 

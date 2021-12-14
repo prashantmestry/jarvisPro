@@ -6,7 +6,7 @@ import { MyThemeContext } from '../../Context/MyThemeContext';
 
 const InfoList = (props) => {
 
-    const { theme} = useContext(MyThemeContext);
+    const { theme } = useContext(MyThemeContext);
     const { pval, nval, nm, fmt } = props.data;
 
     return (
@@ -64,6 +64,7 @@ let BoxList = styled.li`
     margin-right:10px;    
     min-width : 250px;      
     min-height : 100px;        
+    background-image: linear-gradient(to right , ${props => props.theme.color.bg + ',' + props.theme.color.bg2 + ',' + props.theme.color.bg});
 
     .innerBox{        
         display: flex; 
@@ -73,11 +74,11 @@ let BoxList = styled.li`
         align-items: center;
     }        
     h3{            
-        font-size : 14px;            
+        font-size : 13px;            
         font-weight :600;
         text-align : left;            
         border-bottom : 1px solid ${props => props.theme.color.text};
-        padding:1px 0 7px 0;
+        padding:5px 0 7px 0;
         color : ${props => props.theme.color.text};
         text-transform:uppercase;
     }    

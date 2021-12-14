@@ -127,30 +127,11 @@ let MidBox = styled.div`
     display:flex;
 `;
 
-let GraphHolder = styled.div`
-    display: flex;
-    border-radius: 5px;
-
-    .single_box{
-        width: 50%;
-        background: #010f15;
-        margin-bottom: 10px;
-        border-radius: 10px;
-
-        :nth-child(2){
-            margin - left:10px;
-        }
-    }
-`;
-
 const mapStateToProps = state => {
     return {
         allocation_data: state.daaf.allocation_data,
         allocation_data_loading: state.daaf.allocation_data_loading,
-        allocation_data_error: state.daaf.allocation_data_error,
-        // asset_data: state.daaf.asset_data,
-        // asset_data_loading: state.daaf.asset_data_loading,
-        // asset_data_error: state.daaf.asset_data_error
+        allocation_data_error: state.daaf.allocation_data_error,        
         chartData: state.daaf.chartData,
         chartDataLoading: state.daaf.chartDataLoading,
         chartDataError: state.daaf.chartDataError,

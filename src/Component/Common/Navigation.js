@@ -51,7 +51,7 @@ const Navigation = (props) => {
             onCollapse={(collapsed) => setCollapsed(collapsed)}
         >
             <div style={{ height: '32px', margin: '16px', textAlign: 'center' }} >
-                <Switch defaultChecked onChange={(checked) => toggleTheme(checked ? 'light' : 'dark')} />
+                <Switch defaultChecked onChange={(checked) => toggleTheme(checked ? 'dark' : 'light')} />
             </div>
 
             <Menu theme="dark" mode="inline"

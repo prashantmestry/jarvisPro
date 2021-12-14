@@ -75,7 +75,7 @@ let MomentDiv = styled.div`
     padding : 35px;        
     border-radius:10px;        
     font-size : 18px;
-    background: ${props => props.theme.color.bg};
+    background: ${props => props.theme.color.bg};    
     h3{
         font-size: 14px;
         text-transform : uppercase;      

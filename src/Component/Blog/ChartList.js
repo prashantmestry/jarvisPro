@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import * as actions from '../../redux/actions/index';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import ChartEditForm from './ChildComp/ChartEditForm';
 
 const ChartList = (props) => {
-    
+
     let editMessage = (chartId, messageId) => {
         let chartFound = props.blogs.chartList.find(cVal => cVal.id === chartId);
         let selectMessage = chartFound.message.find(mVal => mVal.messageId === messageId) ? chartFound.message.find(mVal => mVal.messageId === messageId).data : '';

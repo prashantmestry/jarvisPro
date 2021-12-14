@@ -17,7 +17,8 @@ export {
 
 
 export {
-    updateCompanyInfo
+    updateCompanyInfo,
+    getCompanyList
 } from './company.action';
 
 export {

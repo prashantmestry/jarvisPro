@@ -4,9 +4,9 @@ import { LoadingOutlined } from '@ant-design/icons'
 const Loading = ({ text }) => {
 
     return (
-        <div>
-            <LoadingOutlined /> {text || 'Loading...'}
-        </div>
+        <span>
+            <LoadingOutlined /> {text || ''}
+        </span>
     )
 
 }
