@@ -5,7 +5,7 @@ let darkThemeColor = {
     currentTheme: 'dark',
     color: {
         text: '#e1e1e1',
-
+        plainBg: '#001528',
         bg: '#03214e',
         bgBorder: '#174387',
 
@@ -25,8 +25,8 @@ let lightThemeColor = {
     currentTheme: 'light',
     color: {
         text: '#1e1e1e',
-        bgPlain: '#fff',
-        bg: '#fff',
+        plainBg: '#fff',
+        bg: '#fdfdfd',
         bgBorder: '#d5d5d5',
 
         bg2: '#efefef',

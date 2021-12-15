@@ -1,4 +1,3 @@
-
 import './App.css';
 import Home from './Component/Home/Home.js'
 import BlogView from './Component/Blog/BlogView';
@@ -11,7 +10,7 @@ import ViewDraggable from './Component/ViewDraggable/ViewDraggable';
 import ViewDaafChart from './Component/Daaf/ViewDaafChart';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { MyThemeContext } from './Context/MyThemeContext';
-import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
+import { createGlobalStyle, ThemeProvider } from "styled-components";
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine-dark.css';
@@ -24,8 +23,11 @@ const { Header, Content } = Layout;
 const GlobalStyle = createGlobalStyle`
   body {    
     background-color : ${props => props.theme.color.bg};
-    color :${props => props.theme.color.text};    
+    color :${props => props.theme.color.text};
   }  
+  *{
+    padding:0; margin:0;
+  }
   .ant-layout{
     background-color : ${props => props.theme.color.bg};
   }
@@ -37,7 +39,7 @@ function App() {
 
   return (
     <ThemeProvider theme={theme} currentTheme={currentTheme}>
-      <GlobalStyle theme={theme} currentTheme={currentTheme} />
+      <GlobalStyle />
       <Layout style={{ minHeight: '100vh' }}>
         <Router>
           <Navigation />
@@ -56,7 +58,9 @@ function App() {
                   <Route path='/company'><ViewCompany /></Route>
                   <Route path='/draggable'><ViewDraggable /></Route>
                   <Route path='/daaf'><ViewDaafChart /></Route>
-                  <Route path="/"><Home /></Route>
+                  <Route path="/">
+                    <Home />
+                  </Route>
                 </Switch>
               </div>
             </Content>

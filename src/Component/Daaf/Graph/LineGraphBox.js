@@ -161,7 +161,7 @@ const LineGraphBox = (props) => {
                 data_list[v1].data.push(
                     {
                         x: dd,
-                        y: props.display_format == '%' ? (v[v1] * 100).toString().substr(0, 5) : roundNumber(v[v1])
+                        y: props.display_format === '%' ? (v[v1] * 100).toString().substr(0, 5) : roundNumber(v[v1])
                     })
             })
         });

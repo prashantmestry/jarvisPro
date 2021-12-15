@@ -87,11 +87,10 @@ const CompanySelection = (props) => {
     )
 }
 
-CompanySelection.protoTypes = {
-    islight: PropTypes.bool.isRequired,
+CompanySelection.propTypes = {    
+    islight: PropTypes.bool,
     style: PropTypes.object,
     onChange: PropTypes.func.isRequired
-
 }
 
 export default CompanySelection;

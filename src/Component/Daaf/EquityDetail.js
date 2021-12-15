@@ -28,7 +28,7 @@ const EquityDetail = (props) => {
                                 <div>{v.yr}</div>
                                 <div>
                                     {
-                                        props.display_format == '%' ? multiplyPercent(v.eqty) : v.eqty
+                                        props.display_format === '%' ? multiplyPercent(v.eqty) : v.eqty
                                     }
                                 </div>
                             </li>

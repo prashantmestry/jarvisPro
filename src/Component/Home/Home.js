@@ -4,6 +4,7 @@ import * as actions from '../../redux/actions';
 import CompanySelection from '../Common/Selection/CompanySelection';
 import SubStatementSelection from '../Common/Selection/SubStatementSelection';
 import PageSection from '../Common/PageSection';
+import ErrorBoundary from '../ErrorComp/ErrorBoundary';
 
 class Home extends React.Component {
 
@@ -35,7 +36,9 @@ class Home extends React.Component {
                     <div>
                         <div className='mar-b-5 txt-500'>Select Company</div>
                         <div>
-                            <SubStatementSelection default_value='con' />
+                            <ErrorBoundary>
+                                <SubStatementSelection default_value='con' />
+                            </ErrorBoundary>
                         </div>
                     </div>
                 </PageSection>

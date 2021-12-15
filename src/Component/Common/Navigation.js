@@ -51,7 +51,10 @@ const Navigation = (props) => {
             onCollapse={(collapsed) => setCollapsed(collapsed)}
         >
             <div style={{ height: '32px', margin: '16px', textAlign: 'center' }} >
-                <Switch defaultChecked onChange={(checked) => toggleTheme(checked ? 'dark' : 'light')} />
+                <Switch 
+                checkedChildren="Dark"
+                unCheckedChildren="Light"
+                defaultChecked onChange={(checked) => toggleTheme(checked ? 'dark' : 'light')} />
             </div>
 
             <Menu theme="dark" mode="inline"
@@ -67,6 +70,9 @@ const Navigation = (props) => {
                     })
                 }
             </Menu>
+            <div className='txt-center mar-t-15' style={{ opacity: '0.5' }}>
+                Env: {process.env.NODE_ENV}
+            </div>
         </Sider >
     )
 }

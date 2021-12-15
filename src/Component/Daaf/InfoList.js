@@ -59,12 +59,11 @@ let BoxList = styled.li`
     padding: 5px 10px 5px 10px;
     display: flex;        
     flex-direction : column;         
-    background : ${props => props.theme.color.bg};
+    background : ${props => props.theme.color.plainBg};
     border-radius : 0px 10px 10px 10px;
     margin-right:10px;    
     min-width : 250px;      
-    min-height : 100px;        
-    background-image: linear-gradient(to right , ${props => props.theme.color.bg + ',' + props.theme.color.bg2 + ',' + props.theme.color.bg});
+    min-height : 100px;            
 
     .innerBox{        
         display: flex; 

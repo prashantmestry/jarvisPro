@@ -1,8 +1,7 @@
-import React, { useContext } from 'react';
+import React, { useEffect } from 'react';
 import { Radio } from 'antd';
 import styled from 'styled-components';
 import { companySubStatementList } from '../../../Utils/GlobalData';
-import { MyThemeContext } from '../../../Context/MyThemeContext';
 import PropTypes from 'prop-types';
 
 const SpanDiv = styled.span`    
@@ -31,7 +30,9 @@ const SpanDiv = styled.span`
 
 const SubStatementSelection = (props) => {
 
-    const { theme } = useContext(MyThemeContext);
+    // if (props.default_value !== 'one') {
+    //     throw new Error('Not a proper name');
+    // }
 
     return (
         <SpanDiv>
@@ -52,8 +53,8 @@ const SubStatementSelection = (props) => {
     )
 }
 
-SubStatementSelection.protoTypes = {
-    default_value: PropTypes.string
+SubStatementSelection.propTypes = {
+    default_value: PropTypes.string.isRequired
 }
 
 export default SubStatementSelection;

@@ -178,3 +178,6 @@ code {
 .txt-500{
   font-weight: 500;
 }
+.txt-center{
+  text-align: center;
+}
