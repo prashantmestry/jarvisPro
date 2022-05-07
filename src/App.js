@@ -46,7 +46,7 @@ function App() {
           <Layout className="site-layout">
             <Header className="site-layout-background" style={{ padding: 0 }} />
             <Content style={{ margin: '0 16px' }}>
-              <div className="site-layout-background" style={{ padding: 15,  minHeight: 360 }}>
+              <div className="site-layout-background" style={{ padding: 20,  minHeight: 360 }}>
                 <Switch>
                   <Route path="/portfolio"> <Portfolio /></Route>
                   <Route path="/grid-table">
