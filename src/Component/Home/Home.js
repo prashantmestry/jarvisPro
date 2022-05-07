@@ -24,7 +24,7 @@ class Home extends React.Component {
             <div>
                 <PageSection className='pad-10 flex flex-wrap'>
                     <div className='mar-r-15 mar-b-10'>
-                        <div className='mar-b-5 txt-500'>Select Company</div>
+                        <div className='mar-b-5 txt-500'>Select Company:</div>
                         <div>
                             <CompanySelection
                                 islight
