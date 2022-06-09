@@ -5,6 +5,7 @@ import { MyHomeContext } from '../Home/Context/HomeContext';
 import Folder from './Folder';
 import './Portfolio.css';
 import { Input } from 'antd';
+import RatingDropDowns from './RatingDropDowns';
 const { Search } = Input;
 
 const Portfolio = (props) => {
@@ -180,7 +181,6 @@ const Portfolio = (props) => {
                 <Folder rootFolder={folders} />
                 <div style={{ marginTop: '40px' }}>
 
-
                     <Input placeholder="input search text" onChange={(e) => onSearchD(e, 'prashant')} style={{ width: 300 }} />
                     <div>Debounce Enter Text : <span>{searchTxt}</span></div>
 
@@ -190,6 +190,7 @@ const Portfolio = (props) => {
                     <div>Throttle Enter Text : <span>{searchTxt}</span></div>
 
                 </div>
+                <RatingDropDowns />
             </div>
         </>
     )

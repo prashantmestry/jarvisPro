@@ -22,14 +22,17 @@ let portfolioListFetchFail = (error) => {
     }
 }
 
+export const updatePortfolioDetail = (data) => {
+    return {
+        type: actionsTypes.PORTFOLIO_UPDATE_DETAIL,
+        data: data
+    }
+}
+
 
 export let getportfolioList = () => {
 
     return dispatch => {
-
-        //dispatch(portfolioListFetchStart());
-        //http://internal-a6105c1885b224b5d8404a4c1370d73e-385165692.ap-south-1.elb.amazonaws.com/api
-
         let url = '/portfolio';
         const headers = { 'Content-Type': 'application/json' };
         jarvisFastApiAxios.post(url, { headers: headers }).then(res => {

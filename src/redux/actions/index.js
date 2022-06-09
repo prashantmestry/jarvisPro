@@ -13,6 +13,7 @@ export {
 
 export {
     getportfolioList,    
+    updatePortfolioDetail
 } from './portfolio.action';
 
 
