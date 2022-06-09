@@ -21,3 +21,11 @@ export const companySubStatementList = [
     { stmtId: 'conp', stmtName: 'conslidated priority', shortName: 'conp' }
 ];
 
+export const frequencyList = [
+    { id: 'annually', title: 'annually', picker: 'year' },
+    { id: 'quarterly', title: 'quartely', picker: 'quarter' },
+    { id: 'monthly', title: 'monthly', picker: 'month' },
+    { id: 'weekly', title: 'weekly', picker: 'week' },
+    { id: 'daily', title: 'daily', picker: null },
+    { id: 'specific_date', title: 'specific date', picker: null }
+];

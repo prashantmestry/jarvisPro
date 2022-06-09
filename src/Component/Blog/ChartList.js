@@ -47,7 +47,7 @@ const ChartList = (props) => {
                             return (
                                 <li key={chart.id}>
                                     <div className='chartInfoBox'>
-                                        <div style={{ fontWeight: '700', color: '#2f84cf' }}>{chart.title}</div>
+                                        <div style={{ fontWeight: '700' }}>{chart.title}</div>
                                     </div>
                                     <div className='messageBox'>
                                         {
@@ -81,16 +81,14 @@ const ChartList = (props) => {
 
 const ChartListDiv = styled.div`
     display : flex; 
-    justify-content:space-between;
-    padding:5px;
+    justify-content:space-between;    
 
     ul{
         flex:1;
         list-style:none;
         margin:0;
         padding:0;        
-        li{            
-            margin:10px;
+        li{                        
             display:block;                        
             padding-bottom:10px;
             margin-bottom:10px;
@@ -104,6 +102,8 @@ const ChartListDiv = styled.div`
         background:#dee8f1;
         padding:10px;
         margin-bottom:10px;
+        color : ${props => props.theme.color.text};
+        background : ${props => props.theme.color.bg2};
     }
     .messageBox{        
         div{            
@@ -111,7 +111,7 @@ const ChartListDiv = styled.div`
             margin-bottom:5px;            
             display:flex;
             justify-content: space-between;
-            padding-left:5px;
+            padding:0 5px;
             align-items:center;
             &:last-child{
                 margin-bottom:0px;

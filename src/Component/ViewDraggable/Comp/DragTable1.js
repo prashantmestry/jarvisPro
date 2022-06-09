@@ -5,7 +5,6 @@ import styled from 'styled-components';
 export const DragTable1 = (props) => {
 
     return (
-
         <DragTable>
             <table width='100%'>
                 <thead>
@@ -120,8 +119,9 @@ export const DragTable2 = (props) => {
 let DragTable = styled.div`;
     table{
         border-collapase : collapse;
+        background : ${props => props.theme.color.plainBg};                      
         tr td , tr th {
-            border : 1px solid gray;
+            border : 1px solid ${props => props.theme.color.bg2Border};
             padding:10px;
         }
     }

@@ -6,6 +6,7 @@ import {
     CaretLeftOutlined, AppstoreOutlined, BarChartOutlined, CloudOutlined, ShopOutlined, TeamOutlined, UserOutlined
 } from '@ant-design/icons';
 import { MyThemeContext } from '../../Context/MyThemeContext';
+import Loading from './Loading';
 
 const { Sider } = Layout;
 
@@ -22,7 +23,8 @@ const Navigation = (props) => {
         { path: '/users', name: 'Users' },
         { path: '/company', name: 'Company' },
         { path: '/draggable', name: 'Draggable' },
-        { path: '/daaf', name: 'Daaf Charts' }
+        { path: '/daaf', name: 'Daaf Charts' },
+        { path: '/note', name: 'Credit Note' }
     ];
 
     let getMenuIcon = (link) => {
@@ -51,10 +53,10 @@ const Navigation = (props) => {
             onCollapse={(collapsed) => setCollapsed(collapsed)}
         >
             <div style={{ height: '32px', margin: '16px', textAlign: 'center' }} >
-                <Switch 
-                checkedChildren="Dark"
-                unCheckedChildren="Light"
-                defaultChecked onChange={(checked) => toggleTheme(checked ? 'dark' : 'light')} />
+                <Switch
+                    checkedChildren="Dark"
+                    unCheckedChildren="Light"
+                    defaultChecked onChange={(checked) => toggleTheme(checked ? 'dark' : 'light')} />
             </div>
 
             <Menu theme="dark" mode="inline"

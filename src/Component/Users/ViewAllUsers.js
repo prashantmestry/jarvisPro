@@ -8,10 +8,7 @@ const ViewAllUsers = (props) => {
         <DoubleBox>
             <div>                
                 <ViewUserList />
-            </div>
-            <div>
-                <ViewUserPosts />
-            </div>
+            </div>           
         </DoubleBox>
     )
 }

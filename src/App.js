@@ -16,7 +16,8 @@ import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine-dark.css';
 import { Layout } from 'antd';
 import ViewAllUsers from './Component/Users/ViewAllUsers';
-import { useContext } from 'react'; 
+import { useContext } from 'react';
+import MyHomeContextProvider from './Component/Home/Context/HomeContext';
 
 const { Header, Content } = Layout;
 
@@ -39,6 +40,7 @@ function App() {
 
   return (
     <ThemeProvider theme={theme} currentTheme={currentTheme}>
+      <MyHomeContextProvider>
       <GlobalStyle />
       <Layout style={{ minHeight: '100vh' }}>
         <Router>
@@ -46,7 +48,7 @@ function App() {
           <Layout className="site-layout">
             <Header className="site-layout-background" style={{ padding: 0 }} />
             <Content style={{ margin: '0 16px' }}>
-              <div className="site-layout-background" style={{ padding: 20,  minHeight: 360 }}>
+              <div className="site-layout-background" style={{ padding: 15, minHeight: 360 }}>
                 <Switch>
                   <Route path="/portfolio"> <Portfolio /></Route>
                   <Route path="/grid-table">
@@ -67,6 +69,7 @@ function App() {
           </Layout>
         </Router>
       </Layout>
+      </MyHomeContextProvider>
     </ThemeProvider>
   );
 }

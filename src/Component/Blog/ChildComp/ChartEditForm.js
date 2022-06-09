@@ -107,7 +107,7 @@ const EditChartForm = (props) => {
     }
 
     return (
-        <EditChartDiv>
+        <EditChartDiv className='mar-l-15'>
             <form onSubmit={submitForm}>
                 <div className="form-group">
                     <label htmlFor="chart_title">Chart Title:</label>
@@ -130,7 +130,7 @@ const EditChartForm = (props) => {
                     />
                 </div>
                 <div className="form-group" style={{ textAlign: 'right' }}>
-                    
+
                     <button type="button" className="btn btn-primary"
                         onClick={() => emptyEditForm()}>Cancel</button>&nbsp;&nbsp;
                     <button type="submit" className="btn btn-success">Submit</button>
@@ -142,8 +142,7 @@ const EditChartForm = (props) => {
 
 let EditChartDiv = styled.div`     
     border : 1px solid #ebebeb;
-    padding:10px;
-    margin:10px;
+    padding:10px;    
 `;
 
 const mapStateToProps = (state) => {

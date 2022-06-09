@@ -6,6 +6,7 @@ import CompanyStatements from './Comp/CompanyStatements';
 class ViewCompany extends React.Component {
 
     constructor(props) {
+        console.log('constructor called');
         super(props);
     }
 
@@ -37,7 +38,6 @@ class ViewCompany extends React.Component {
 
     fetchData = () => {
         //console.log('Here call fetch new Data');
-
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -55,6 +55,8 @@ class ViewCompany extends React.Component {
     }
 
     render() {
+
+        console.log('render called');
 
         return (
             <div>

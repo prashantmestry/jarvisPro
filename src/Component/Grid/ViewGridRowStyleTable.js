@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import "ag-grid-community";
 import Button from 'react-bootstrap/Button';
+import { coldDef } from './Dummy/colDef';
+import { rowData as rowNew } from './Dummy/rowData';
 
 const ViewGridRowStyleTable = (props) => {
 
@@ -13,14 +15,25 @@ const ViewGridRowStyleTable = (props) => {
     const [columnDefs, setColumnDefs] = useState([
         { headerName: "Heading", field: "Heading" },
         { headerName: "Current", field: "Current" },
-        { headerName: "Forward", field: "Forward" }
+        {
+            headerName: "Forward", field: "Forward",
+            cellRenderer: (params) => {
+                console.log('param', params);
+                let val = params.value;
+                if (params.data.display_color && params.data.display_color === 'red') {
+                    val = val + '%';
+                }
+                return val;
+            }
+        }
     ]);
+
 
     const [rowData, setRowData] = useState([
         {
             "Heading": "tdm_138",
             "Current": 10,
-            "Forward": 15
+            "Forward": -15.12
         },
         {
             "Heading": "tdm_141",
@@ -30,19 +43,19 @@ const ViewGridRowStyleTable = (props) => {
         {
             "Heading": "tdm_145",
             "Current": 10,
-            "Forward": 22
+            "Forward": 22.20
         },
         {
             "Heading": "tdm_151",
             "Current": 21,
-            "Forward": 62
+            "Forward": 0.0
         },
         {
             "Heading": "tdm_158",
             "Current": 15,
-            "Forward": 10,
-            "display_color" : "red",
-            "display_format" : "%"
+            "Forward": -10.10,
+            "display_color": "red",
+            "display_format": "%"
         }
     ]);
 
@@ -56,7 +69,7 @@ const ViewGridRowStyleTable = (props) => {
         filter: true,
     };
 
-    let onGridReady = (params) => {        
+    let onGridReady = (params) => {
         setGridApi(params.api);
         setGridColumnApi(params.columnApi);
     }
@@ -102,15 +115,19 @@ const ViewGridRowStyleTable = (props) => {
                 }}
             >
                 <AgGridReact
-                    columnDefs={columnDefs}
-                    defaultColDef={defaultColDef}
-                    rowData={rowData}
+                    // columnDefs={columnDefs}
+                    // defaultColDef={defaultColDef}
+                    // rowData={rowData}
+
+                    columnDefs={coldDef}
+                    rowData={rowNew}
 
                     onGridReady={onGridReady}
                     applyColumnDefOrder={true}
-                    pivotPanelShow={'always'}
-                    rowGroupPanelShow={'always'}
-                    pivotColumnGroupTotals={'before'}
+
+                    // pivotPanelShow={'always'}
+                    // rowGroupPanelShow={'always'}
+                    // pivotColumnGroupTotals={'before'}
 
                     rowStyle={rowStyle}
                     getRowStyle={getRowStyle}

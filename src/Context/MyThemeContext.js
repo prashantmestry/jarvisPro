@@ -5,6 +5,7 @@ let darkThemeColor = {
     currentTheme: 'dark',
     color: {
         text: '#e1e1e1',
+        lightText : '#a8a8a8',
         plainBg: '#001528',
         bg: '#03214e',
         bgBorder: '#174387',

@@ -34,3 +34,10 @@ export const updateCompanyInfo = (data) => {
         dispatch(setCompanyInfo(data))
     }
 }
+
+export const updateCompanyStmtData = (data) => {    
+    return {
+        type: actionTypes.SET_COMPANY_STMT_DATA,
+        statementTableData: data
+    }
+}

@@ -18,7 +18,8 @@ export {
 
 export {
     updateCompanyInfo,
-    getCompanyList
+    getCompanyList,
+    updateCompanyStmtData
 } from './company.action';
 
 export {

@@ -1,4 +1,5 @@
 import * as actionsTypes from '../actionTypes';
+import moment from 'moment';
 
 const initialStates = {
     companyList: [],
@@ -6,8 +7,21 @@ const initialStates = {
     companyInfo: {
         id: null,
         name: null,
-        stmtType: null,
-        stmtId: null
+        stmtType: 'sa',
+        stmtId: 1,
+        frequency: 'annually',
+        selectDateType: 'dateSlider',
+        // startDate: new Date().getFullYear(),
+        // endDate: new Date().getFullYear(),
+        dateRange: [new Date().getFullYear(), new Date().getFullYear()],
+        specificDate: []
+    },
+    statementTableData: {
+        1: {
+            loading: false,
+            error: null,
+            data: {}
+        }
     }
 }
 
@@ -36,6 +50,17 @@ const setCompanyInfo = (state, action) => {
     }
 }
 
+const setCompanyStmtData = (state, action) => {
+    return {
+        ...state,
+        statementTableData: {
+            ...state.statementTableData,
+            ...action.statementTableData
+
+        }
+    }
+}
+
 const reducer = (state = initialStates, action) => {
 
     switch (action.type) {
@@ -45,6 +70,8 @@ const reducer = (state = initialStates, action) => {
             return fetchCompanyListStart(state, action);
         case actionsTypes.FETCH_COMPANY_LIST_SUCCESS:
             return fetchCompanyListSuccess(state, action);
+        case actionsTypes.SET_COMPANY_STMT_DATA:
+            return setCompanyStmtData(state, action);
 
         default:
             return state;

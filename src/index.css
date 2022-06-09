@@ -181,3 +181,19 @@ code {
 .txt-center{
   text-align: center;
 }
+
+button{
+  background: none;
+  border :1px solid;
+  padding:3px 10px;
+  border-radius: 4px;
+}
+
+@keyframes spin {
+  0%{
+    transform:  rotateX(0deg);    
+  }
+  100%{
+    transform:  rotateX(360deg);    
+  }
+}
