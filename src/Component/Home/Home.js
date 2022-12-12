@@ -240,7 +240,7 @@ class Home extends React.Component {
                         </div>
 
                         <div className='mar-r-15  mar-b-10'>
-                            <div className='mar-b-5 txt-500'>Sub Statement</div>
+                            <div className='mar-b-5 txt-500'>Sub Statement:</div>
                             <div>
                                 <ErrorBoundary>
                                     <SubStatementSelection />
