@@ -1,48 +1,38 @@
-
-button{
-  margin:5px;
+.App {
+  text-align: center;
 }
 
-.my-green-class{
-  background-color: green !important;
-}
-.my-red-class{
-  background-color: rgb(241, 52, 52) !important;
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
 }
 
-.rag-blue{
-  background-color: #7272f9 !important;
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
 }
 
-.rag-orange{
-  background-color: orange !important;
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
 }
 
-.rag-violet{
-  background-color: violet !important;
+.App-link {
+  color: #61dafb;
 }
 
-.cell-blue-right-class{
-  background-color: #7272f9 !important;
-  text-align: right;
-  font-weight: bold;
-  color:  #fff;
-}
-
-.number-cell{
-  text-align: right;
-}
-
-.text-cell{
-  text-align: left;
-}
-
-#components-layout-demo-fixed-sider .logo {
-  height: 32px;
-  margin: 16px;
-  background: rgba(255, 255, 255, 0.2);
-}
-
-.ant-drawer-body{
-  padding:10px 20px 10px 20px !important;
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
