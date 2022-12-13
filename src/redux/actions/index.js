@@ -27,3 +27,8 @@ export {
     fetchDaafData,
     fetchAllDaafCharts    
 } from './daaf.action';
+
+export {
+    updateSchemaDetail,
+    clearSchemaData
+} from './schema.action';
