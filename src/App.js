@@ -1,3 +1,4 @@
+import React, { useContext } from 'react';
 import './App.css';
 import Home from './Component/Home/Home.js'
 import BlogView from './Component/Blog/BlogView';
@@ -15,10 +16,10 @@ import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine-dark.css';
 import { Layout } from 'antd';
+
 import ViewAllUsers from './Component/Users/ViewAllUsers';
-import { useContext } from 'react';
 import MyHomeContextProvider from './Component/Home/Context/HomeContext';
-import GeneralSchema from './Component/Schema/GeneralSchema';
+// //import GeneralSchema from './Component/Schema/GeneralSchema';
 
 const { Header, Content } = Layout;
 
@@ -50,21 +51,20 @@ function App() {
               <Header className="site-layout-background" style={{ padding: 0 }} />
               <Content style={{ margin: '0 16px' }}>
                 <div className="site-layout-background" style={{ padding: 15, minHeight: 360 }}>
-                  <Switch>
-                    <Route path="/portfolio"> <Portfolio /></Route>
+                  <Switch>                    
                     <Route path="/grid-table">
                       <ViewGridRowStyleTable />
                       <ViewGridCellStyleTable />
                     </Route>
+                    <Route path="/portfolio"> <Portfolio /></Route>
                     <Route path='/myblog'><BlogView /></Route>
                     <Route path='/users'><ViewAllUsers /></Route>
                     <Route path='/company'><ViewCompany /></Route>
                     <Route path='/draggable'><ViewDraggable /></Route>
                     <Route path='/daaf'><ViewDaafChart /></Route>
-                    <Route path='/schema'><GeneralSchema /></Route>
-                    <Route path="/">
-                      <Home />
-                    </Route>
+                    {/* <Route path='/schema'><GeneralSchema /></Route> */}
+
+                    <Route path="/"><Home /></Route>
                   </Switch>
                 </div>
               </Content>
@@ -73,7 +73,43 @@ function App() {
         </Layout>
       </MyHomeContextProvider>
     </ThemeProvider>
-  );
+  )
+
+  // return (
+  //   <ThemeProvider theme={theme} currentTheme={currentTheme}>
+  //     <MyHomeContextProvider>
+  //       <GlobalStyle />
+  //       <Layout style={{ minHeight: '100vh' }}>
+  //         <Router>
+  //           <Navigation />
+  //           <Layout className="site-layout">
+  //             <Header className="site-layout-background" style={{ padding: 0 }} />
+  //             <Content style={{ margin: '0 16px' }}>
+  //               <div className="site-layout-background" style={{ padding: 15, minHeight: 360 }}>
+  //                 <Switch>
+  //                   <Route path="/portfolio"> <Portfolio /></Route>
+  //                   <Route path="/grid-table">
+  //                     <ViewGridRowStyleTable />
+  //                     <ViewGridCellStyleTable />
+  //                   </Route>
+  //                   <Route path='/myblog'><BlogView /></Route>
+  //                   <Route path='/users'><ViewAllUsers /></Route>
+  //                   <Route path='/company'><ViewCompany /></Route>
+  //                   <Route path='/draggable'><ViewDraggable /></Route>
+  //                   {/* <Route path='/daaf'><ViewDaafChart /></Route> */}
+  //                   {/* <Route path='/schema'><GeneralSchema /></Route> */}
+  //                   <Route path="/">
+  //                     <Home />
+  //                   </Route>
+  //                 </Switch>
+  //               </div>
+  //             </Content>
+  //           </Layout>
+  //         </Router>
+  //       </Layout>
+  //     </MyHomeContextProvider>
+  //   </ThemeProvider>
+  // );
 }
 
 export default App;

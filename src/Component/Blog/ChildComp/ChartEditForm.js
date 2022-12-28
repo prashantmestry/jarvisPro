@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React from 'react';
 import * as actions from '../../../redux/actions/index';
 import { connect } from 'react-redux';
 import styled from 'styled-components';

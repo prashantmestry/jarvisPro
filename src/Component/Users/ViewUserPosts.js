@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Badge, ListGroup } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import * as actions from '../../redux/actions/index';
 

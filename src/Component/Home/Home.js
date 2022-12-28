@@ -16,7 +16,7 @@ import { Select } from 'antd';
 import SliderYear from '../Common/Slider/SliderYear';
 import SingleSelect from '../Common/Selection/SingleSelect';
 import { frequencyList } from '../../Utils/GlobalData';
-import MyLi from './MyLi';
+//import MyLi from './MyLi';
 import moment from 'moment';
 import ColorHome from './ColorHome';
 import NotificationDrawer from '../Common/NotificationDrawer';

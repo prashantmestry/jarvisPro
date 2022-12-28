@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
 import Loading from '../Common/Loading';
-import ReactDom from 'react-dom';
 import styled from 'styled-components';
 import { MyThemeContext } from '../../Context/MyThemeContext';
 

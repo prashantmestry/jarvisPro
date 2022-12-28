@@ -80,7 +80,7 @@ export const coldDef = [
     "displayFormat": 'perc',
     "dpts": '2',
     cellRenderer: (params) => {
-      console.log('param', params);
+      
       let val = formatValueNew(null, params.value, {
         displayFormat: 'perc',
         dpts: 2

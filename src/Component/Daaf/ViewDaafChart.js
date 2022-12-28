@@ -3,7 +3,6 @@ import * as  actions from '../../redux/actions/index';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import moment from 'moment';
-import excel_download_icon from '../../images/excel_download_icon.png';
 import Loading from '../Common/Loading';
 import AssetInfo from './AssetInfo';
 import EquityDetail from './EquityDetail';

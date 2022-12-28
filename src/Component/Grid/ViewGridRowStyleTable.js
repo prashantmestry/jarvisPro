@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import "ag-grid-community";
-import Button from 'react-bootstrap/Button';
+import { Button } from 'antd';
 import { coldDef } from './Dummy/colDef';
 import { rowData as rowNew } from './Dummy/rowData';
 

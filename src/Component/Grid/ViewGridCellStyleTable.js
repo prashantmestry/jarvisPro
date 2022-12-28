@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import "ag-grid-community";
-import Button from '@restart/ui/esm/Button';
+import { Button } from 'antd'
 
 const ViewGridCellStyleTable = (props) => {
 
