@@ -221,7 +221,7 @@ class Home extends React.Component {
                         this.setState({
                             openDrawer: true
                         })
-                    }}>Notification</button>
+                    }}>Notification Click</button>
                 </div>
 
                 <PageSection className='pad-10'>
