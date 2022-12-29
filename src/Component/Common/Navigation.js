@@ -7,11 +7,13 @@ import {
 } from '@ant-design/icons';
 import { MyThemeContext } from '../../Context/MyThemeContext';
 import Loading from './Loading';
+import styled from 'styled-components';
 
 const { Sider } = Layout;
 
 const Navigation = (props) => {
 
+    const { theme, currentTheme } = useContext(MyThemeContext);
     const [collapsed, setCollapsed] = useState(false);
     const { toggleTheme } = useContext(MyThemeContext);
 
@@ -47,7 +49,7 @@ const Navigation = (props) => {
     }
 
     return (
-        <Sider
+        <MenuSider
             collapsible
             collapsed={collapsed}
             onCollapse={(collapsed) => setCollapsed(collapsed)}
@@ -59,7 +61,7 @@ const Navigation = (props) => {
                     defaultChecked onChange={(checked) => toggleTheme(checked ? 'dark' : 'light')} />
             </div>
 
-            <Menu theme="dark" mode="inline"
+            <Menu theme={currentTheme} mode="inline"
                 defaultSelectedKeys={props.location ? props.location.pathname : '/'}
             >
                 {
@@ -75,8 +77,19 @@ const Navigation = (props) => {
             <div className='txt-center mar-t-15' style={{ opacity: '0.5' }}>
                 Env: {process.env.NODE_ENV}
             </div>
-        </Sider >
+        </MenuSider >
     )
 }
 
-export default memo(withRouter(Navigation));
+const MenuSider = styled(Sider)`    
+.ant-layout-sider-trigger {
+    background-color: ${props => props.theme.color.bg2}    
+}
+&:where(.css-dev-only-do-not-override-acm2ia).ant-layout .ant-layout-sider {
+    background: red !important;
+}
+`;
+
+//export default memo(withRouter(Navigation));
+
+export default Navigation;

@@ -30,10 +30,16 @@ const GlobalStyle = createGlobalStyle`
   }  
   *{
     padding:0; margin:0;
+    color : ${props => props.theme.color.text};
   }
   .ant-layout{
-    background-color : ${props => props.theme.color.bg};
+    background-color : ${props => props.theme.color.bg} !important;
   }
+  :where(.css-dev-only-do-not-override-acm2ia).ant-select .ant-select-selection-placeholder{
+     color : ${props => props.theme.color.text};
+    // opacity:.6;
+  }
+
 `;
 
 function App() {
@@ -48,10 +54,10 @@ function App() {
           <Router>
             <Navigation />
             <Layout className="site-layout">
-              <Header className="site-layout-background" style={{ padding: 0 }} />
+              {/* <Header className="site-layout-background" style={{ padding: 0 }} /> */}
               <Content style={{ margin: '0 16px' }}>
                 <div className="site-layout-background" style={{ padding: 15, minHeight: 360 }}>
-                  <Switch>                    
+                  <Switch>
                     <Route path="/grid-table">
                       <ViewGridRowStyleTable />
                       <ViewGridCellStyleTable />
@@ -74,42 +80,6 @@ function App() {
       </MyHomeContextProvider>
     </ThemeProvider>
   )
-
-  // return (
-  //   <ThemeProvider theme={theme} currentTheme={currentTheme}>
-  //     <MyHomeContextProvider>
-  //       <GlobalStyle />
-  //       <Layout style={{ minHeight: '100vh' }}>
-  //         <Router>
-  //           <Navigation />
-  //           <Layout className="site-layout">
-  //             <Header className="site-layout-background" style={{ padding: 0 }} />
-  //             <Content style={{ margin: '0 16px' }}>
-  //               <div className="site-layout-background" style={{ padding: 15, minHeight: 360 }}>
-  //                 <Switch>
-  //                   <Route path="/portfolio"> <Portfolio /></Route>
-  //                   <Route path="/grid-table">
-  //                     <ViewGridRowStyleTable />
-  //                     <ViewGridCellStyleTable />
-  //                   </Route>
-  //                   <Route path='/myblog'><BlogView /></Route>
-  //                   <Route path='/users'><ViewAllUsers /></Route>
-  //                   <Route path='/company'><ViewCompany /></Route>
-  //                   <Route path='/draggable'><ViewDraggable /></Route>
-  //                   {/* <Route path='/daaf'><ViewDaafChart /></Route> */}
-  //                   {/* <Route path='/schema'><GeneralSchema /></Route> */}
-  //                   <Route path="/">
-  //                     <Home />
-  //                   </Route>
-  //                 </Switch>
-  //               </div>
-  //             </Content>
-  //           </Layout>
-  //         </Router>
-  //       </Layout>
-  //     </MyHomeContextProvider>
-  //   </ThemeProvider>
-  // );
 }
 
 export default App;

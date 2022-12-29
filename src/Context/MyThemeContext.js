@@ -25,7 +25,7 @@ let darkThemeColor = {
 let lightThemeColor = {
     currentTheme: 'light',
     color: {
-        text: '#1e1e1e',
+        text: '#383838',
         plainBg: '#fff',
         bg: '#fdfdfd',
         bgBorder: '#d5d5d5',
