@@ -35,9 +35,20 @@ const GlobalStyle = createGlobalStyle`
   .ant-layout{
     background-color : ${props => props.theme.color.bg} !important;
   }
-  :where(.css-dev-only-do-not-override-acm2ia).ant-select .ant-select-selection-placeholder{
-     color : ${props => props.theme.color.text};
-    // opacity:.6;
+  .ant-select-selection-placeholder{
+     color : ${props => props.theme.color.text};    
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: ${props => props.theme.color.bg};    
+  }   
+  ::-webkit-scrollbar-thumb {
+    background: ${props => props.theme.currentTheme === 'dark' ? '#005098'  : '#a4a4a4'};    
+    border-radius:3px;
   }
 
 `;
