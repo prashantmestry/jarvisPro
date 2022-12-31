@@ -3,7 +3,7 @@ import ViewUserList from './ViewUserList';
 import ViewUserPosts from './ViewUserPosts';
 import styled from 'styled-components';
 
-const ViewAllUsers = (props) => {
+const Users = (props) => {
     return (
         <DoubleBox>
             <div>                
@@ -23,4 +23,4 @@ let DoubleBox = styled.div`
     }
 `;
 
-export default ViewAllUsers;
+export default Users;

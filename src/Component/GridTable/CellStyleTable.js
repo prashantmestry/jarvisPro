@@ -4,7 +4,7 @@ import "ag-grid-community";
 import { Button } from 'antd'
 import GridTableContainer from '../Common/GridTableContainer/GridTableContainer';
 
-const ViewGridCellStyleTable = (props) => {
+const CellStyleTable = (props) => {
 
     const [columnShow, setColumnShow] = useState(true);
     const [gridApi, setGridApi] = useState(null);
@@ -131,4 +131,4 @@ const ViewGridCellStyleTable = (props) => {
     )
 }
 
-export default ViewGridCellStyleTable;
+export default CellStyleTable;

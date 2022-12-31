@@ -49,7 +49,7 @@ const Navigation = (props) => {
     }
 
     return (
-        <MenuSider
+        <Sider
             collapsible
             collapsed={collapsed}
             onCollapse={(collapsed) => setCollapsed(collapsed)}
@@ -77,18 +77,10 @@ const Navigation = (props) => {
             <div className='txt-center mar-t-15' style={{ opacity: '0.5' }}>
                 Env: {process.env.NODE_ENV}
             </div>
-        </MenuSider >
+        </Sider >
     )
 }
 
-const MenuSider = styled(Sider)`    
-.ant-layout-sider-trigger {
-    background-color: ${props => props.theme.color.bg2}    
-}
-&:where(.css-dev-only-do-not-override-acm2ia).ant-layout .ant-layout-sider {
-    background: red !important;
-}
-`;
 
 //export default memo(withRouter(Navigation));
 

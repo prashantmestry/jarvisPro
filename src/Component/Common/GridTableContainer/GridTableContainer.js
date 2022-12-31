@@ -56,7 +56,7 @@ const ContainerDiv = styled.div`
 
 const GridTableContainer = (props) => {
 
-    console.log('all props', props);
+    //console.log('all props', props);
     let { theme, totalRow, isCustomHeight, rowHeight, tableHeight } = props;
 
     let height = rowHeight ? totalRow : (tableHeight || '400');

@@ -7,10 +7,9 @@ import { rowData as rowNew } from './Dummy/rowData';
 import GridTableContainer from '../Common/GridTableContainer/GridTableContainer';
 import TestTable from './TestTable';
 
-const ViewGridRowStyleTable = (props) => {
+const RowStyleTable = (props) => {
 
     const [columnShow, setColumnShow] = useState(true);
-
     const [gridApi, setGridApi] = useState(null);
     const [gridColumnApi, setGridColumnApi] = useState(null);
 
@@ -29,7 +28,6 @@ const ViewGridRowStyleTable = (props) => {
             }
         }
     ]);
-
 
     const [rowData, setRowData] = useState([
         {
@@ -105,24 +103,11 @@ const ViewGridRowStyleTable = (props) => {
 
     return (
         <div>
-
-            <TestTable 
-            />
-
             <div style={{ textAlign: 'center' }}>Grid Row Style Example</div>
             <Button onClick={() => setColumnShow(!columnShow)}>Toggle</Button>
-            {/* <div
-                className="ag-theme-alpine"
-                style={{
-                    height: '400px',
-                    width: '100%',
-                    padding: '5px',
-                    margin: '0 auto'
-                }}
-            > */}
             <GridTableContainer
                 totalRow={rowNew.length}
-                rowHeight                
+                rowHeight
             >
                 <AgGridReact
                     // columnDefs={columnDefs}
@@ -143,10 +128,8 @@ const ViewGridRowStyleTable = (props) => {
                     columnHoverHighlight={columnShow}
                 />
             </GridTableContainer>
-            {/* </div> */}
-
         </div>
     )
 }
 
-export default ViewGridRowStyleTable;
+export default RowStyleTable;
