@@ -10,35 +10,67 @@ const ContainerDiv = styled.div`
             background : ${props => props.theme.color.bg2}
         }
         .ag-row{
-            background : ${props => props.theme.color.bg2};
+            background : none;
             color : ${props => props.theme.color.text};
             border-bottom : 1px solid ${props => props.theme.color.bg2Border};
+            &:hover{
+                background : ${props => props.theme.color.bg2};
+            }
         }    
         .ag-row-odd {
-            background : ${props => props.theme.color.bg};
+            background : none;            
         }    
         .ag-header-icon , .ag-header-row{
             color : ${props => props.theme.color.text};
-        }   
-        .ag-theme-alpine .ag-ltr .ag-cell{
-            Xborder-right : 1px solid ${props => props.theme.color.bg2Border};
-            border-right : 1px solid red !important;
-        }    
+        }           
         .ag-root-wrapper{
             border : 1px solid ${props => props.theme.color.bg2Border};
         }
-    }            
+    }     
+    .ag-center-cols-clipper{
+        background : ${props => props.theme.color.bg};
+    }       
+    .ag-center-cols-container{        
+        border : 1px solid ${props => props.theme.color.bg2Border};        
+        border-top:none;
+        border-left:none;
+    }
+    .ag-theme-alpine .ag-header{
+        border:none;
+        border-bottom : 1px solid ${props => props.theme.color.bg2Border};        
+    }
+    .ag-cell{
+        line-height : 30px;
+        border-right : 1px solid ${props => props.theme.color.bg2Border} !important;            
+    }
+    .ag-row{
+        background : ${props => props.theme.color.bg};
+    }
+    .ag-header-cell-resize{
+        display:none;
+    }
+    .ag-header-cell{
+        border-right : 1px solid ${props => props.theme.color.bg2Border} !important;
+    }
 `;
 
 const GridTableContainer = (props) => {
+
+    console.log('all props', props);
+    let { theme, totalRow, isCustomHeight, rowHeight, tableHeight } = props;
+
+    let height = rowHeight ? totalRow : (tableHeight || '400');
+
+
+
     return (
         <ContainerDiv>
             <div
-                className="ag-theme-alpine"
+                className={`ag-theme-alpine ${theme}`}
                 style={{
-                    height: '400px',
+                    height: height + 'px',
                     width: '100%',
-                    margin: '0 auto'
+                    Xmargin: '0 auto'
                 }}
             >
                 {props.children}

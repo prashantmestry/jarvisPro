@@ -4,6 +4,8 @@ import "ag-grid-community";
 import { Button } from 'antd';
 import { coldDef } from './Dummy/colDef';
 import { rowData as rowNew } from './Dummy/rowData';
+import GridTableContainer from '../Common/GridTableContainer/GridTableContainer';
+import TestTable from './TestTable';
 
 const ViewGridRowStyleTable = (props) => {
 
@@ -103,9 +105,13 @@ const ViewGridRowStyleTable = (props) => {
 
     return (
         <div>
+
+            <TestTable 
+            />
+
             <div style={{ textAlign: 'center' }}>Grid Row Style Example</div>
             <Button onClick={() => setColumnShow(!columnShow)}>Toggle</Button>
-            <div
+            {/* <div
                 className="ag-theme-alpine"
                 style={{
                     height: '400px',
@@ -113,32 +119,31 @@ const ViewGridRowStyleTable = (props) => {
                     padding: '5px',
                     margin: '0 auto'
                 }}
+            > */}
+            <GridTableContainer
+                totalRow={rowNew.length}
+                rowHeight                
             >
                 <AgGridReact
                     // columnDefs={columnDefs}
                     // defaultColDef={defaultColDef}
                     // rowData={rowData}
-
                     columnDefs={coldDef}
                     rowData={rowNew}
-
                     onGridReady={onGridReady}
                     applyColumnDefOrder={true}
-
                     // pivotPanelShow={'always'}
                     // rowGroupPanelShow={'always'}
                     // pivotColumnGroupTotals={'before'}
-
                     rowStyle={rowStyle}
                     getRowStyle={getRowStyle}
-
                     // rowClass={rowClass}
                     // getRowClass={getRowClass}
                     //rowClassRules={rowClassRules}
                     columnHoverHighlight={columnShow}
-
                 />
-            </div>
+            </GridTableContainer>
+            {/* </div> */}
 
         </div>
     )

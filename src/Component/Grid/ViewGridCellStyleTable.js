@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import "ag-grid-community";
 import { Button } from 'antd'
+import GridTableContainer from '../Common/GridTableContainer/GridTableContainer';
 
 const ViewGridCellStyleTable = (props) => {
 
-    const [columnShow, setColumnShow] = useState(true);    
+    const [columnShow, setColumnShow] = useState(true);
     const [gridApi, setGridApi] = useState(null);
     const [gridColumnApi, setGridColumnApi] = useState(null);
 
@@ -83,13 +84,13 @@ const ViewGridCellStyleTable = (props) => {
     };
 
 
-    let onGridReady = (params) => {        
+    let onGridReady = (params) => {
         setGridApi(params.api);
         setGridColumnApi(params.columnApi);
     }
 
     let onUpdateSomeValues = () => {
-        var rowCount = gridApi.getDisplayedRowCount();        
+        var rowCount = gridApi.getDisplayedRowCount();
         for (var i = 0; i < 5; i++) {
             var row = Math.floor(Math.random() * rowCount);
             var rowNode = gridApi.getDisplayedRowAtIndex(row);
@@ -106,14 +107,9 @@ const ViewGridCellStyleTable = (props) => {
                 <Button onClick={() => onUpdateSomeValues()}>Update Some Data</Button>
 
             </div>
-            <div
-                className="ag-theme-alpine"
-                style={{
-                    height: '400px',
-                    width: '80%',
-                    padding: '5px',
-                    margin: '0 auto'
-                }}
+
+            <GridTableContainer
+                tableHeight='500'
             >
                 <AgGridReact
                     columnDefs={columnDefs}
@@ -130,9 +126,7 @@ const ViewGridCellStyleTable = (props) => {
                     cellFadeDelay={500}
 
                 />
-
-            </div>
-
+            </GridTableContainer>
         </div>
     )
 }
