@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../redux/actions';
 import CompanySelection from '../Common/Selection/CompanySelection';
-import SubStatementSelection from '../Common/Selection/SubStatement';
+import SubStatement from '../Common/Selection/SubStatement';
 import PageSection from '../Common/PageSection';
 import ErrorBoundary from '../ErrorComp/ErrorBoundary';
 import styled from 'styled-components';
@@ -63,11 +63,13 @@ class Home extends React.Component {
 
     static getDerivedStateFromProps() {
         //console.log('getRerivedStateFromProps call');
+        return null;
     }
 
-    getSnapshotBeforeUpdate() {
-        //console.log('getSnapshotBeforeUpdate call');
-    }
+    // getSnapshotBeforeUpdate() {
+    //     //console.log('getSnapshotBeforeUpdate call');
+    //     return;
+    // }
 
     shouldComponentUpdate() {
         //console.log('shouldComponentUpdate call');
@@ -243,7 +245,7 @@ class Home extends React.Component {
                             <div className='mar-b-5 txt-500'>Sub Statement:</div>
                             <div>
                                 <ErrorBoundary>
-                                    <SubStatementSelection />
+                                    <SubStatement />
                                 </ErrorBoundary>
                             </div>
                         </div>
@@ -261,7 +263,7 @@ class Home extends React.Component {
                                     {
                                         frequencyList.map(freq => {
                                             return (
-                                                <Select.Option value={freq.id}>{freq.title.toUpperCase()}</Select.Option>
+                                                <Select.Option key={freq.id} value={freq.id}>{freq.title.toUpperCase()}</Select.Option>
                                             )
                                         })
                                     }
@@ -284,7 +286,8 @@ class Home extends React.Component {
 
                     <div>
                         <div className='mar-b-5 mar-t-10 txt-500'>Statement</div>
-                        <Statements />
+                        <Statements                            
+                        />
                     </div>
 
                 </PageSection>

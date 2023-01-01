@@ -143,7 +143,7 @@ const TestTable = (props) => {
             }}>Show Loading {customLoading && 'loading'}</Button>
 
             <GridTableContainer
-                totalRow={(rowData.length + 1) * 37}
+                totalRow={(rowData.length * 37) + 35}
                 rowHeight
             >
                 <AgGridReact
@@ -169,8 +169,8 @@ const TestTable = (props) => {
 
 const CustomLoadingOverlay = () => {
     return (
-        <div style={{ height: '20%', color: '#fff' }}>
-            <LoadingOutlined /> New Loading...
+        <div style={{ height: '200px', width: '200px', display: 'flex', fontSize : '24px', justifyContent: 'center', alignItems: 'center', color: '#fff', border: '1px solid red' }}>
+            <LoadingOutlined className='mar-r-10' /> New Loading...
         </div>
     )
 }

@@ -41,7 +41,7 @@ const NotificationDrawer = ({ visible, onClose }) => {
     return (
         <Drawer title="Basic Drawer" placement="right"
             onClose={onClose}
-            visible={visible}
+            open={visible}
             width={400}
             bodyStyle={{
                 color: '#000'
@@ -58,7 +58,7 @@ const NotificationDrawer = ({ visible, onClose }) => {
                     {
                         list.map(val => {
                             return (
-                                <div style={{ border: '1px solid gray', margin: '10px 0 ', padding: '5px' }} id={val.name}>
+                                <div key={val.name} style={{ border: '1px solid gray', margin: '10px 0 ', padding: '5px' }} id={val.name}>
                                     <div>{val.name}</div>
                                     <div>{val.body}</div>
                                 </div>

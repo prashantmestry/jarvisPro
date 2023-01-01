@@ -1,6 +1,6 @@
 import React, { useEffect, memo, useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { withRouter } from 'react-router';
+import { useHistory, withRouter } from 'react-router';
 import { Layout, Menu, Switch } from 'antd';
 import {
     CaretLeftOutlined, AppstoreOutlined, BarChartOutlined, CloudOutlined, ShopOutlined, TeamOutlined, UserOutlined
@@ -13,9 +13,11 @@ const { Sider } = Layout;
 
 const Navigation = (props) => {
 
+    const history = useHistory();
     const { theme, currentTheme } = useContext(MyThemeContext);
     const [collapsed, setCollapsed] = useState(false);
     const { toggleTheme } = useContext(MyThemeContext);
+    const [items, setItems] = useState([]);
 
     const allLinks = [
         { path: '/', name: 'Home' },
@@ -28,6 +30,16 @@ const Navigation = (props) => {
         { path: '/daaf', name: 'Daaf Charts' },
         { path: '/note', name: 'Credit Note' }
     ];
+
+    useEffect(() => {
+        setItems(allLinks.map(link => {
+            return {
+                label: link.name,
+                key: link.path,
+                icon: getMenuIcon(link.path)
+            }
+        }))
+    }, [])
 
     let getMenuIcon = (link) => {
         switch (link) {
@@ -48,6 +60,8 @@ const Navigation = (props) => {
         }
     }
 
+
+
     return (
         <Sider
             collapsible
@@ -62,18 +76,21 @@ const Navigation = (props) => {
             </div>
 
             <Menu theme={currentTheme} mode="inline"
-                defaultSelectedKeys={props.location ? props.location.pathname : '/'}
-            >
-                {
+                items={items}
+                defaultSelectedKeys={history ? history.location.pathname : '/'}
+            />
+                {/* {
                     allLinks.map(link => {
                         return (
-                            <Menu.Item key={link.path} icon={getMenuIcon(link.path)}>
+                            <Menu.Item key={link.path} icon={getMenuIcon(link.path)}
+
+                            >
                                 <Link to={link.path}>{link.name}</Link>
                             </Menu.Item>
                         )
                     })
                 }
-            </Menu>
+            </Menu> */}
             <div className='txt-center mar-t-15' style={{ opacity: '0.5' }}>
                 Env: {process.env.NODE_ENV}
             </div>

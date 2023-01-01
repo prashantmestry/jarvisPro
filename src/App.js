@@ -35,8 +35,8 @@ const GlobalStyle = createGlobalStyle`
   .ant-layout{
     background-color : ${props => props.theme.color.bg} !important;
   }
-  .ant-select-selection-placeholder{
-     color : ${props => props.theme.color.text};    
+  .ant-select-selection-placeholder ,.ant-select-selection-placeholder{
+     color : ${props => props.theme.color.text} !important;    
   }
 
   ::-webkit-scrollbar {
@@ -81,9 +81,7 @@ const GlobalStyle = createGlobalStyle`
   .ant-layout-sider{
     background :${props => props.theme.color.bg2} !important;
   }
-  .ant-layout-sider-trigger {
-    Xackground-color: ${props => props.theme.color.bg2}    
-  }
+  
   .ag-overlay-loading-wrapper{
     background : #000 !important;
     opacity:.4;

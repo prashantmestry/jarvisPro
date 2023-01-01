@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Radio } from 'antd';
 import styled from 'styled-components';
 import { companyStatementList } from '../../../Utils/GlobalData';
-import PropTypes from 'prop-types';
+//import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import * as actions from '../../../redux/actions';
 
@@ -73,8 +73,8 @@ const Statements = (props) => {
     )
 }
 
-Statements.propTypes = {
-    default_value: PropTypes.string.isRequired
-}
+// Statements.propTypes = {
+//     default_value: PropTypes.string.isRequired
+// }
 
 export default Statements;

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Radio } from 'antd';
 import styled from 'styled-components';
 import { companySubStatementList } from '../../../Utils/GlobalData';
-import PropTypes from 'prop-types';
+//import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import * as actions from '../../../redux/actions';
 
@@ -33,7 +33,7 @@ const SpanDiv = styled.span`
     }
 `;
 
-const SubStatementSelection = (props) => {
+const SubStatement = (props) => {
 
     // if (props.default_value !== 'one') {
     //     throw new Error('Not a proper name');
@@ -76,8 +76,8 @@ const SubStatementSelection = (props) => {
     )
 }
 
-SubStatementSelection.propTypes = {
-    default_value: PropTypes.string.isRequired
-}
+// SubStatementSelection.propTypes = {
+//     default_value: PropTypes.string.isRequired
+// }
 
-export default SubStatementSelection;
+export default SubStatement;
