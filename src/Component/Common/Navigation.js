@@ -31,16 +31,6 @@ const Navigation = (props) => {
         { path: '/note', name: 'Credit Note' }
     ];
 
-    useEffect(() => {
-        setItems(allLinks.map(link => {
-            return {
-                label: link.name,
-                key: link.path,
-                icon: getMenuIcon(link.path)
-            }
-        }))
-    }, [])
-
     let getMenuIcon = (link) => {
         switch (link) {
             case '/':
@@ -74,12 +64,10 @@ const Navigation = (props) => {
                     unCheckedChildren="Light"
                     defaultChecked onChange={(checked) => toggleTheme(checked ? 'dark' : 'light')} />
             </div>
-
             <Menu theme={currentTheme} mode="inline"
-                items={items}
                 defaultSelectedKeys={history ? history.location.pathname : '/'}
-            />
-                {/* {
+            >
+                {
                     allLinks.map(link => {
                         return (
                             <Menu.Item key={link.path} icon={getMenuIcon(link.path)}
@@ -90,7 +78,7 @@ const Navigation = (props) => {
                         )
                     })
                 }
-            </Menu> */}
+            </Menu>
             <div className='txt-center mar-t-15' style={{ opacity: '0.5' }}>
                 Env: {process.env.NODE_ENV}
             </div>

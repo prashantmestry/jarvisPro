@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { DeleteOutlined, PlusOutlined } from '@ant-design/icons';
-import * as actions from  '../../redux/actions/index';
+import * as actions from '../../redux/actions/index';
 import { Select } from 'antd';
 const { Option } = Select;
 
@@ -57,7 +57,7 @@ const RatingDropDowns = (props) => {
                             >
                                 {
                                     (ratingAgency || []).map((agVal, key) => (
-                                        <Option key={agVal.value + ''} value={agVal.value}>{agVal.value}</Option>
+                                        <Option key={agVal.value} value={agVal.value}>{agVal.value}</Option>
                                     ))
                                 }
                             </Select>
@@ -85,7 +85,7 @@ const RatingDropDowns = (props) => {
                                 allowClear={true}
                                 placeholder="Rating"
                                 style={{ width: '30%' }}
-                                onChange={e => updateRatingList('rating_value', e, index)}                            
+                                onChange={e => updateRatingList('rating_value', e, index)}
                             >
                                 {
                                     (rating || []).map((typeVal, key) => (
