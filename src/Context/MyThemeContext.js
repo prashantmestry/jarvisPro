@@ -5,14 +5,19 @@ let darkThemeColor = {
     currentTheme: 'dark',
     color: {
         text: '#e1e1e1',
-        lightText : '#a8a8a8',
+        revertText: '#383838',
+        lightText: '#a8a8a8',
+
+        //Background
         plainBg: '#001528',
         bg: '#03214e',
-        bgBorder: '#174387',
-
         bg2: '#0a2c60',
+
+        //Borders
+        bgBorder: '#174387',
         bg2Border: '#204683',
 
+        // Colors
         bgComp: 'red',
         green: '#19c991',
         yellow: '#e3de20',
@@ -26,6 +31,7 @@ let lightThemeColor = {
     currentTheme: 'light',
     color: {
         text: '#383838',
+        revertText: '#e1e1e1',
         plainBg: '#fff',
         bg: '#fdfdfd',
         bgBorder: '#d5d5d5',
