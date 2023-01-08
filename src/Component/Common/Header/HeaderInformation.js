@@ -12,10 +12,11 @@ const HeaderInformation = (props) => {
             {
                 (user && isAuthenticated) &&
                 <div className='flex'>
-                    <div><Image src={user.picture} /></div>
-                    <div>{user.name}</div>
+                    <div><Image width={40} src={user.picture} /></div>
+                    <div className='mar-l-10'>{user.name}</div>
                 </div>
             }
+            Author {process.env.REACT_APP_AUTHOR}
             <div>
                 <LoginButton />
                 <LogoutButton />

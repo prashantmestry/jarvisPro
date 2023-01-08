@@ -1,5 +1,6 @@
 import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
+import { Button } from 'antd';
 
 const LogoutButton = (props) => {
 
@@ -7,9 +8,9 @@ const LogoutButton = (props) => {
 
     return (
         isAuthenticated && (
-            <button onClick={() => logout()}>
+            <Button onClick={() => logout()}>
                 Sign out
-            </button>
+            </Button>
         )
     )
 }

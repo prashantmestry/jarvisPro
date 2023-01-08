@@ -1,5 +1,6 @@
 import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
+import { Button } from 'antd';
 
 const LoginButton = (props) => {
 
@@ -7,9 +8,9 @@ const LoginButton = (props) => {
 
     return (
         !isAuthenticated && (
-            <button onClick={() => loginWithRedirect()}>
+            <Button onClick={() => loginWithRedirect()}>
                 Sign in
-            </button>
+            </Button>
         )
     )
 }
