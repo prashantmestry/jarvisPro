@@ -224,6 +224,7 @@ class Home extends React.Component {
                             openDrawer: true
                         })
                     }}>Notification Click</button>
+                    Author : {process.env.REACT_APP_AUTHOR}
                 </div>
 
                 <PageSection className='pad-10'>
@@ -286,7 +287,7 @@ class Home extends React.Component {
 
                     <div>
                         <div className='mar-b-5 mar-t-10 txt-500'>Statement</div>
-                        <Statements                            
+                        <Statements
                         />
                     </div>
 

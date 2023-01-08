@@ -181,7 +181,7 @@ const Portfolio = (props) => {
                 <Folder rootFolder={folders} />
                 <div style={{ marginTop: '40px' }}>
 
-                    <Input placeholder="input search text" onChange={(e) => onSearchD(e, 'prashant')} style={{ width: 300 }} />
+                    <Input placeholder="input search text" onChange={(e) => onSearchD(e)} style={{ width: 300 }} />
                     <div>Debounce Enter Text : <span>{searchTxt}</span></div>
 
                     <div style={{ marginTop: '20px' }} />

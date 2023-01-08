@@ -18,7 +18,7 @@ import { Layout } from 'antd';
 import Users from './Component/Users/Users';
 import MyHomeContextProvider from './Component/Home/Context/HomeContext';
 import GridTable from './Component/GridTable/GridTable';
-import { UserSwitchOutlined } from '@ant-design/icons';
+import HeaderInformation from './Component/Common/Header/HeaderInformation';
 // //import GeneralSchema from './Component/Schema/GeneralSchema';
 
 const { Header, Content } = Layout;
@@ -100,14 +100,16 @@ function App() {
           <Router>
             <Navigation />
             <Layout className="site-layout">
-              {/* <Header className="site-layout-background" style={{ padding: 0 }} /> */}
+              <Header className="site-layout-background" style={{ padding: 0 }} >
+                <HeaderInformation />
+              </Header>
               <Content style={{ margin: '0 16px' }}>
                 <div className="site-layout-background" style={{ padding: 15, minHeight: 360 }}>
                   <Switch>
                     <Route path="/grid-table"><GridTable /></Route>
                     <Route path="/portfolio"> <Portfolio /></Route>
                     <Route path='/myblog'><BlogView /></Route>
-                    <Route path='/users'><UserSwitchOutlined /></Route>
+                    <Route path='/users'><Users /></Route>
                     <Route path='/company'><ViewCompany /></Route>
                     <Route path='/draggable'><ViewDraggable /></Route>
                     <Route path='/daaf'><ViewDaafChart /></Route>

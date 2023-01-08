@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
+    "@auth0/auth0-react": "^1.12.0",
     "@nosferatu500/react-sortable-tree": "^4.2.1",
     "@nosferatu500/theme-file-explorer": "^3.0.21",
     "@testing-library/jest-dom": "^5.14.1",
