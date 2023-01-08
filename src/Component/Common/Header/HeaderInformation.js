@@ -3,12 +3,19 @@ import { Image } from 'antd';
 import React from 'react';
 import LoginButton from './LoginButton';
 import LogoutButton from './LogoutButto';
+import { LoadingOutlined } from '@ant-design/icons';
 
 const HeaderInformation = (props) => {
-    const { user, isAuthenticated } = useAuth0();
+    const { isLoading, error, user, isAuthenticated } = useAuth0();
     console.log('login user info', user);
     return (
         <div className='flex justify-between align-center pad-l-10 pad-r-10'>
+            {
+                error && <span>{error}</span>
+            }
+            {
+                (!error && isLoading) && <LoadingOutlined />
+            }
             {
                 (user && isAuthenticated) &&
                 <div className='flex'>
@@ -17,10 +24,13 @@ const HeaderInformation = (props) => {
                 </div>
             }
             Author {process.env.REACT_APP_AUTHOR}
-            <div>
-                <LoginButton />
-                <LogoutButton />
-            </div>
+            {
+                (!error && !isLoading) &&
+                <div>
+                    <LoginButton />
+                    <LogoutButton />
+                </div>
+            }
         </div>
     )
 }
