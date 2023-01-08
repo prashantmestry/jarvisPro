@@ -16,11 +16,11 @@ console.log('clientId', clientId);
 const root = createRoot(document.getElementById('root'));
 
 root.render(
-  <Auth0Provider>
-    <Provider store={store}>
-      <MyThemeContextProvider domain={domain} clientId={clientId} redirectUrl={window.location.origin}>
+  <Provider store={store}>
+    <MyThemeContextProvider>
+      <Auth0Provider domain={domain} clientId={clientId} redirectUri={window.location.origin}>
         <App />
-      </MyThemeContextProvider>
-    </Provider>
-  </Auth0Provider>
+      </Auth0Provider>
+    </MyThemeContextProvider>
+  </Provider>
 );
