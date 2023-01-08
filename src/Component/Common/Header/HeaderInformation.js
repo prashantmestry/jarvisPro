@@ -9,7 +9,7 @@ const HeaderInformation = (props) => {
     return (
         <div className='flex justify-between align-center pad-l-10 pad-r-10'>
             {
-                user &&
+                (user && isAuthenticated) &&
                 <div className='flex'>
                     <div><Image src={user.picture} /></div>
                     <div>{user.name}</div>
