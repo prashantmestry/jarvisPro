@@ -6,6 +6,7 @@ import LogoutButton from './LogoutButto';
 
 const HeaderInformation = (props) => {
     const { user, isAuthenticated } = useAuth0();
+    console.log('login user info', user);
     return (
         <div className='flex justify-between align-center pad-l-10 pad-r-10'>
             {
