@@ -1,9 +1,9 @@
 import * as actionTypes from '../actionTypes';
-import { allocation_data } from '../DummyJson/Daaf/allocation_data';
-import { asset_data } from '../DummyJson/Daaf/asset_data';
+import { allocation_data } from '../../Json/Daaf/allocation_data';
+import { asset_data } from '../../Json/Daaf/asset_data';
 
-import { percentile_data } from '../DummyJson/Daaf/percentile_data';
-import { momentum_data } from '../DummyJson/Daaf/momentum_data';
+import { percentile_data } from '../../Json/Daaf/percentile_data';
+import { momentum_data } from '../../Json/Daaf/momentum_data';
 
 const fetchDaafDataStart = () => {
     return {

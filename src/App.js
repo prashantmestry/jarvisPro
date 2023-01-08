@@ -74,7 +74,9 @@ const GlobalStyle = createGlobalStyle`
       opacity:.5;
     }
   }
-
+  .ant-layout-sider-trigger{
+    background :${props => props.theme.color.bg3} !important; 
+  }
   .ant-menu-dark{
     background :${props => props.theme.color.bg2} !important; 
   }

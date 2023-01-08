@@ -12,6 +12,7 @@ let darkThemeColor = {
         plainBg: '#001528',
         bg: '#03214e',
         bg2: '#0a2c60',
+        bg3 : '#073780',
 
         //Borders
         bgBorder: '#174387',
@@ -37,6 +38,7 @@ let lightThemeColor = {
         bgBorder: '#d5d5d5',
 
         bg2: '#efefef',
+        bg3: '#c5c5c5',
         bg2Border: '#d7d7d7',
 
         bgComp: 'green',

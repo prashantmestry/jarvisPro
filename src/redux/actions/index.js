@@ -12,7 +12,7 @@ export {
 } from './user.action';
 
 export {
-    getportfolioList,    
+    getportfolioList,
     updatePortfolioDetail
 } from './portfolio.action';
 
@@ -25,10 +25,14 @@ export {
 
 export {
     fetchDaafData,
-    fetchAllDaafCharts    
+    fetchAllDaafCharts
 } from './daaf.action';
 
 export {
     updateSchemaDetail,
     clearSchemaData
 } from './schema.action';
+
+export {
+    updateSetting
+} from './setting.action'

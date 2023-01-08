@@ -61,7 +61,7 @@ const NotificationDrawer = ({ visible, onClose }) => {
                 <div>Total seen : {list.filter(lVal => lVal.isSeen)?.length}</div>
                 <div>Sort by name</div>
             </div>
-            <div style={{ height: 'calc(100% - 5px)', overflow: 'auto', marginTop: '10px', paddingRight: '10px' }}>
+            <div style={{ height: 'calc(100% - 60px)', overflow: 'auto', marginTop: '10px', paddingRight: '10px' }}>
                 <InfiniteScroll
                     pageStart={0}
                     loadMore={loadFunc}

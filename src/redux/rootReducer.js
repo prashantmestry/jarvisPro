@@ -5,6 +5,7 @@ import portfolioReducers from './reducers/portfolio.reducer';
 import companyReducers from './reducers/company.reducer';
 import daafReducers from './reducers/daaf.reducer';
 import schemaReducer from './reducers/schema.reducer';
+import settingReducer from './reducers/setting.reducer';
 
 const rootReducer = combineReducers({
     blogs: blogsReducers,
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
     portfolio: portfolioReducers,
     company: companyReducers,
     daaf: daafReducers,
-    schema: schemaReducer
+    schema: schemaReducer,
+    setting: settingReducer
 });
 
 export default rootReducer;
