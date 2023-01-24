@@ -6,6 +6,7 @@ import Folder from './Folder';
 import './Portfolio.css';
 import { Input } from 'antd';
 import RatingDropDowns from './RatingDropDowns';
+import CreatePortfolio from './CreatePortfolio';
 const { Search } = Input;
 
 const Portfolio = (props) => {
@@ -117,67 +118,13 @@ const Portfolio = (props) => {
 
     useEffect(() => {
 
-        var y = 1;
-        if(function f(){}){
-             y += typeof y;
-
-             y = y + typeof y
-        }
-
-        console.log('y' , y);
-
-        console.log('===');
-
-
-        // 0 1 1 2 3 5 8 13
-
-        let prevNum = 0;
-        let nextNum = 1;
-        let final = 0;
-
-        do {
-            final = prevNum + nextNum;
-            prevNum = nextNum;
-            nextNum = final;
-            console.log(final + " ");
-        }
-        while (final < 100);
-
-
-
-        // console.log(prevNum + " ");
-        // console.log(nextNum + " ");
-
-        // while (final < 100) {
-
-        //     final = prevNum + nextNum;              // 0 + 1    
-        //     prevNum = nextNum;          // 1 3
-        //     nextNum = final;            // 1 2
-
-        //     console.log(final + " ");
-
-        // }
-
-
-        // for (let i = 1; i <= 50; i++) {
-        //     let count = 0;
-        //     for (let j = 1; j <= i; j++) {
-        //         if (i % j === 0) {
-        //             count++;
-        //         }
-        //         if (count > 2) {
-        //             break;
-        //         }
-        //     }             
-        //     if (count === 2) {
-        //         console.log('prime number', i);
-        //     }
-        // }
     }, [])
 
     return (
         <>
             <div>
+                <RatingDropDowns />
+
                 <Folder rootFolder={folders} />
                 <div style={{ marginTop: '40px' }}>
 
@@ -190,7 +137,9 @@ const Portfolio = (props) => {
                     <div>Throttle Enter Text : <span>{searchTxt}</span></div>
 
                 </div>
-                <RatingDropDowns />
+
+                <CreatePortfolio />
+
             </div>
         </>
     )

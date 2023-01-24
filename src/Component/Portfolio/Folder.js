@@ -16,9 +16,9 @@ const Folder = ({ rootFolder }) => {
                 </div>
                 <div style={{ display: open ? 'block' : 'none' }}>
                     {
-                        rootFolder.child.map(val => {
+                        rootFolder.child.map((val, index) => {
                             return (
-                                <Folder rootFolder={val} />
+                                <Folder key={val.name + index} rootFolder={val} />
                             )
                         })
                     }

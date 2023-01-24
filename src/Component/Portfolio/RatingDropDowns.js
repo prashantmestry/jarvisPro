@@ -46,7 +46,7 @@ const RatingDropDowns = (props) => {
             {
                 portfolio?.userRating.map((list, index) => {
                     return (
-                        <div>
+                        <div key={list?.rating_type + index}>
                             <Select className="mar-r-10"
                                 value={list?.rating_agency || null}
                                 allowClear={true}

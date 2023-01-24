@@ -27,6 +27,8 @@ const GlobalStyle = createGlobalStyle`
   body {    
     background-color : ${props => props.theme.color.bg};
     color :${props => props.theme.color.text};
+    Xfont-family : SF Pro Text, Helvetica,Arial,sans-serif;
+    font-family : cursive !important;
   }  
   *{
     padding:0; margin:0;
