@@ -134,7 +134,7 @@ class Home extends React.Component {
                 />
 
                 <div className='mar-b-10'>
-                    <Button onClick={() => updateSetting({ ...setting, notificationDrawerOpen: true })}>Notification Click1</Button>
+                    <Button onClick={() => updateSetting({ ...setting, notificationDrawerOpen: true })}>Notification Click2 </Button>
                 </div>
 
                 <PageSection className='pad-10'>

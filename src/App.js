@@ -98,8 +98,10 @@ function App() {
 
   return (
     <ThemeProvider theme={theme} currentTheme={currentTheme}>
+
       <MyHomeContextProvider>
         <GlobalStyle />
+        
         <Layout style={{ minHeight: '100vh' }}>
           <Router>
             <Navigation />
@@ -116,8 +118,7 @@ function App() {
                     <Route path='/users'><Users /></Route>
                     <Route path='/company'><ViewCompany /></Route>
                     <Route path='/draggable'><ViewDraggable /></Route>
-                    <Route path='/daaf'><ViewDaafChart /></Route>
-                    {/* <Route path='/schema'><GeneralSchema /></Route> */}
+                    <Route path='/daaf'><ViewDaafChart /></Route>                    
                     <Route path="/"><Home /></Route>
                   </Switch>
                 </div>
@@ -125,7 +126,10 @@ function App() {
             </Layout>
           </Router>
         </Layout>
+       
+
       </MyHomeContextProvider>
+
     </ThemeProvider>
   )
 }
